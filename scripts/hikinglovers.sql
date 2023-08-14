@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS `hikinglovers` DEFAULT CHARACTER SET latin1;
+CREATE DATABASE IF NOT EXISTS `hamilton-8-lovers`;
 
-USE `hikinglovers`;
+USE `hamilton-8-lovers`;
 
 DROP TABLE IF EXISTS `Hikes`;
 
