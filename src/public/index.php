@@ -1,7 +1,13 @@
 <?php
-declare(strict_types=1);
-session_start();
+include_once "inc/default.inc.php";
+require_once "vendor/autoload.php";
 
-include 'app/views/layout/header.view.php';
+use core\Router;
 
-include 'app/views/layout/footer.view.php';
+$router = new Router();
+$router->route(
+    parse_url(
+        $_SERVER['REQUEST_URI'],
+        PHP_URL_PATH
+    )
+);

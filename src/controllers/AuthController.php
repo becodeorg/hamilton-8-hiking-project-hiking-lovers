@@ -1,27 +1,25 @@
 <?php
-declare(strict_types=1);
 
-namespace app\controllers;
-
-use app\models\Users;
-use Exception;
+namespace controllers;
 
 class AuthController
 {
-    public function register(string $firstnameInput, string $lastnameInput, string $emailInput, string $passwordInput)
+    public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
-        if (empty($firstnameInput) || (empty($lastnameInput) || empty($emailInput) || empty($passwordInput)) {
+        if (empty($firstnameInput) || empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
         $firstname = htmlspecialchars($firstnameInput);
-        $lastname= htmlspecialchars($lastnameInput);
+        $lastname = htmlspecialchars($lastnameInput);
+        $nickname = htmlspecialchars($nicknameInput);
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
 
         $id = (new User())->registerNewUserAndReturnId(
             $firstname,
             $lastname,
+            $nickname,
             $email,
             $passwordHash
         );
@@ -38,20 +36,20 @@ class AuthController
 
     public function showRegistrationForm()
     {
-        include 'app/views/layout/header.view.php';
-        include 'app/views/register.view.php';
-        include 'app/views/layout/footer.view.php';
+        include 'views/layout/header.view.php';
+        include 'views/register.view.php';
+        include 'views/layout/footer.view.php';
     }
 
-    public function login(string $firstnameInput, string $lastname, string $passwordInput)
+    public function login(string $usernameInput, string $passwordInput)
     {
-        if (empty($firstnameInput) || empty($lastnameInput) || empty($passwordInput)) {
+        if (empty($usernameInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
-        $firstname = htmlspecialchars($firstnameInput);
+        $username = htmlspecialchars($usernameInput);
 
-        $user = (new Users())->findByFirstname($firstname);
+        $user = (new User())->findByUsername($username);
 
         if (empty($user)) {
             throw new Exception('Mauvais nom d\'utilisateur');

@@ -1,8 +1,7 @@
-
 <?php
 declare(strict_types=1);
 
-namespace app\models;
+namespace App\Models;
 
 use PDO;
 use PDOStatement;
@@ -14,9 +13,9 @@ abstract class Database
     public function __construct()
     {
         $this->pdo = new PDO(
-            'mysql:host=188.166.24.55;dbname=hamilton-8-lovers',
-            'lovers-admin',
-            'WxfOxFJTYILIq5yk'
+            'mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_DATABASE'),
+            getenv('DB_USERNAME'),
+            getenv('DB_PASSWORD')
         );
 
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);

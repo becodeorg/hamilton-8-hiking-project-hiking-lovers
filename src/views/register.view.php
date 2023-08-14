@@ -1,11 +1,15 @@
 <form action="#" method="post">
     <div>
-        <label for="firstname">Firstrname</label>
-        <input type="text" id="username" name="username"/>
+        <label for="firstname">firstname</label>
+        <input type="text" id="firstname" name="firstname"/>
     </div>
     <div>
-        <label for="lastname">Lastname</label>
-        <input type="text" id="username" name="username"/>
+        <label for="lastname">lastname</label>
+        <input type="text" id="lastname" name="lastname"/>
+    </div>
+    <div>
+        <label for="nickname">nickname</label>
+        <input type="text" id="nickname" name="nickname"/>
     </div>
     <div>
         <label for="email">Email</label>
