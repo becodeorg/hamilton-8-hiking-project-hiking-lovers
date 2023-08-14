@@ -1,4 +1,4 @@
-<h2>name</h2>
+<h2><?= $hike['name']?></h2>
 
 <p>Description: <?= $hike['description']?> </p>
 <p>Distance: <?= $hike['distance'] ?></p>
