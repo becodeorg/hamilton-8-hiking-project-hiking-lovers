@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Models;
+namespace App\models;
 
+use Models\Database;
 use PDO;
 
 class Hikes extends Database

@@ -14,7 +14,7 @@ class Database
     private PDO $pdo;
 
     //Inside the constructor, a new PDO connection is established using the database credentials obtained from environment variables (getenv).
-    // The connection attributes are then configured for error handling and result fetching modes.
+
     public function __construct()
     {
         $this->pdo = new PDO(
@@ -22,8 +22,9 @@ class Database
             getenv('DB_USERNAME'),
             getenv('DB_PASSWORD')
         );
-
+    // The connection attributes are then configured for error handling and result fetching modes.
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        // FETCH_ASSOC Specifies that the fetch method shall return each row as an array indexed by column number as returned in the corresponding result set, starting at column 0.
         $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
