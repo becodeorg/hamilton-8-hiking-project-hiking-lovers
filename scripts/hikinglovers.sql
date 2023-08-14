@@ -33,6 +33,6 @@ DROP TABLE IF EXISTS `Tags`;
 
 CREATE TABLE `Tags` (
                          `id` INT AUTO_INCREMENT PRIMARY KEY,
-                         `name` VARCHAR(100) NOT NULL,
+                         `name` VARCHAR(100) NOT NULL
 
 );
