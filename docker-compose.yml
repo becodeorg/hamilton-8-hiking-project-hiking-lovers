@@ -8,10 +8,10 @@ services:
             - dbdata:/var/lib/mysql
             - './scripts/init.sql:/docker-entrypoint-initdb.d/1.sql'
         environment:
-            - MYSQL_ROOT_PASSWORD=pass1234
-            - MYSQL_DATABASE=php-playground
-            - MYSQL_USER=playground-user
-            - MYSQL_PASSWORD=playground-pass1234
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+            - MYSQL_DATABASE=${DB_DATABASE}
+            - MYSQL_USER=${DB_USERNAME}
+            - MYSQL_PASSWORD=${DB_PASSWORD}
         ports:
             - '3002:3306'
 
@@ -39,8 +39,8 @@ services:
             PMA_HOST: mysql
             PMA_PORT: 3306
             PMA_ARBITRARY: 1
-            PMA_USER: "playground-user"
-            PMA_PASSWORD: "playground-pass1234"
+            PMA_USER: ${DB_USERNAME}
+            PMA_PASSWORD: ${DB_PASSWORD}
         depends_on:
             - mysql
         ports:
