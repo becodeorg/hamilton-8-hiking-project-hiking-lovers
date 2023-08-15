@@ -15,27 +15,31 @@ class AuthController
         $this->db = new Database();
     }
 
-    public function register(string $usernameInput, string $emailInput, string $passwordInput)
+    public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
-        if (empty($usernameInput) || empty($emailInput) || empty($passwordInput)) {
+        if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
-        $username = htmlspecialchars($usernameInput);
+        $firstname = htmlspecialchars($firstnameInput);
+        $lastname = htmlspecialchars($lastnameInput);
+        $nickname = htmlspecialchars($nicknameInput);
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
 
         $this->db->query(
             "
-                INSERT INTO users (username, email, password) 
-                VALUES (?, ?, ?)
+                INSERT INTO Users (firstname,lastname,nickname, email, password) 
+                VALUES (?, ?, ?, ?, ?)
             ",
-            [$username, $email, $passwordHash]
+            [$firstname, $lastname, $nickname, $email, $passwordHash]
         );
 
         $_SESSION['user'] = [
             'id' => $this->db->lastInsertId(),
-            'username' => $username,
+            'firstname' => $fisrtname,
+            'lastname' => $lastname,
+            'nickname' => $nickname,
             'email' => $email
         ];
 
@@ -50,17 +54,17 @@ class AuthController
         include 'views/layout/footer.view.php';
     }
 
-    public function login(string $usernameInput, string $passwordInput)
+    public function login(string $nicknameInput, string $passwordInput)
     {
-        if (empty($usernameInput) || empty($passwordInput)) {
+        if (empty($nicknameInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
-        $username = htmlspecialchars($usernameInput);
+        $nickname = htmlspecialchars($nicknameInput);
 
         $stmt = $this->db->query(
-            "SELECT * FROM users WHERE username = ?",
-            [$username]
+            "SELECT * FROM Users WHERE nickname = ?",
+            [$nickname]
         );
 
         $user = $stmt->fetch();
@@ -75,7 +79,7 @@ class AuthController
 
         $_SESSION['user'] = [
             'id' => $user['id'],
-            'username' => $username,
+            'nickname' => $nickname,
             'email' => $user['email']
         ];
 

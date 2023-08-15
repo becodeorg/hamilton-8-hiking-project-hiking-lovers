@@ -34,7 +34,7 @@ try {
         case "login":
             $authController = new AuthController();
             if ($method === "GET") $authController->showLoginForm();
-            if ($method === "POST") $authController->login($_POST['username'], $_POST['password']);
+            if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
             break;
         case "logout":
             $authController = new AuthController();
@@ -43,7 +43,7 @@ try {
         case "register":
             $authController = new AuthController();
             if ($method === "GET") $authController->showRegistrationForm();
-            if ($method === "POST") $authController->register($_POST['username'],$_POST['email'], $_POST['password']);
+            if ($method === "POST") $authController->register($_POST['firstname'],$_POST['lastname'],$_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
         default:
             $pageController = new PageController();
