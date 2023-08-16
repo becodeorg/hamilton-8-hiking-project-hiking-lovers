@@ -1,20 +1,16 @@
 <?php
 declare(strict_types=1);
 
-<<<<<<< HEAD
-namespace App\Models;
-=======
+
 namespace Models;
->>>>>>> ozlem
+
 
 use PDO;
 use PDOStatement;
 
-<<<<<<< HEAD
-abstract class Database
-=======
+
 class Database
->>>>>>> ozlem
+
 {
     private PDO $pdo;
 

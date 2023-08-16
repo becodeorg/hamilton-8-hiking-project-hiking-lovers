@@ -4,56 +4,23 @@
 
 namespace Composer\Autoload;
 
-<<<<<<< HEAD
 class ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c
 {
-    public static $prefixLengthsPsr4 = array (
-        'c' => 
-        array (
-            'core\\' => 5,
-            'controllers\\' => 12,
-        ),
-    );
-
-    public static $prefixDirsPsr4 = array (
-        'core\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/core',
-        ),
-        'controllers\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/controllers',
-        ),
-    );
-
     public static $classMap = array (
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-=======
-class ComposerStaticInitf945cb9602f0425c382b7836dc765b73
-{
-    public static $classMap = array (
-        'ComposerAutoloaderInitf945cb9602f0425c382b7836dc765b73' => __DIR__ . '/..' . '/composer/autoload_real.php',
         'Composer\\Autoload\\ClassLoader' => __DIR__ . '/..' . '/composer/ClassLoader.php',
-        'Composer\\Autoload\\ComposerStaticInitf945cb9602f0425c382b7836dc765b73' => __DIR__ . '/..' . '/composer/autoload_static.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/AuthController.php',
         'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikeController.php',
         'Controllers\\PageController' => __DIR__ . '/../..' . '/controllers/PageController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
         'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
->>>>>>> ozlem
+        'core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-<<<<<<< HEAD
-            $loader->prefixLengthsPsr4 = ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c::$classMap;
-=======
-            $loader->classMap = ComposerStaticInitf945cb9602f0425c382b7836dc765b73::$classMap;
->>>>>>> ozlem
 
         }, null, ClassLoader::class);
     }
