@@ -27,7 +27,7 @@ try {
             $hikeController = new HikeController();
             $hikeController->index();
             break;
-        case "product":
+        case "hike":
             $hikeController = new HikeController();
             $hikeController->show($_GET['id']);
             break;

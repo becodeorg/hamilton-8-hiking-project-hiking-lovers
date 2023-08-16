@@ -10,7 +10,7 @@
 body {
   background: #fefae0;
 }
-body .topnav {
+body nav {
   overflow: hidden;
   background-color: #283618;
   position: relative;
@@ -18,16 +18,16 @@ body .topnav {
   color: #fefae0;
   justify-content: space-between;
 }
-body .topnav h3 a {
+body nav h3 a {
   padding: 14px 16px;
   font-size: 17px;
   display: block;
   color: #fefae0;
 }
-body .topnav ul {
+body nav ul {
   display: flex;
 }
-body .topnav ul li a {
+body nav ul li a {
   padding: 14px 16px;
   font-size: 17px;
   display: block;
