@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Controllers;
+namespace controllers;
 
 use Exception;
 use Models\Database;
 use Models\Hike;
 use PDO;
 
-class ²HikeController
+class HikeController
 {
     private Database $db;
 
@@ -22,7 +22,7 @@ class ²HikeController
         try {
             $hike = (new Hike())->findAll(20);
 
-            // 3 - Affichage de la liste des produits
+
             include 'views/layout/header.view.php';
             include 'views/index.view.php';
             include 'views/layout/footer.view.php';

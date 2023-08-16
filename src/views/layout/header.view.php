@@ -16,7 +16,6 @@
                     <a href="/logout">Logout</a>
                 <?php else: ?>
                 <div class="buttons">
-                    <button><a href="/login">Login</a></button>
                     <button><a href="/register">Register</a></button>
                 </div>
                 <?php endif; ?>
