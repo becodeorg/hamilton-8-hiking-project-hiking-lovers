@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100&display=swap");
 .hike_container {
   background-color: #bc6c25;
   margin: 20px;
@@ -17,7 +18,7 @@ main {
   justify-content: center;
 }
 
-form {
+.login {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,21 +26,65 @@ form {
   margin: 2rem;
   width: 20rem;
 }
-form label {
+.login label {
   display: flex;
   align-content: center;
   width: 5rem;
 }
-form label input {
+.login label input {
   border-radius: 2rem;
 }
 
+.userspage {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  border: 2px solid #bc6c25;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.userlistsearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userlistsearch input {
+  border: #bc6c25 2px solid;
+  margin: 0.5rem;
+  border-radius: 1rem;
+  min-height: 3rem;
+  background-color: #bc6c25;
+  color: #fefae0;
+}
+.userlistsearch button {
+  border: #bc6c25 2px solid;
+  border-radius: 1rem;
+  min-height: 3rem;
+  background-color: #bc6c25;
+  color: #fefae0;
+}
+
+.listing_user ul li {
+  margin: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border: #283618 1px solid;
+  border-radius: 1rem;
+}
+.listing_user ul li .curd_user {
+  padding: 0.5rem;
+  margin: 1rem;
+  border: #283618 1px solid;
+  border-radius: 1rem;
+}
+
 * {
-  padding: 0;
-  margin: 0;
   text-decoration: none;
   list-style: none;
-  font-family: "Shadows Into Light", cursive;
+  font-family: "Roboto Light";
 }
 
 body {
@@ -80,6 +125,15 @@ body footer {
   align-items: center;
   background-color: #283618;
   color: #fefae0;
+}
+body footer ul {
+  padding: 0;
+}
+body footer .back {
+  margin: 1rem;
+  border: #bc6c25 1px solid;
+  border-radius: 1rem;
+  padding: 1rem;
 }
 body a {
   text-decoration: none;

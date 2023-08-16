@@ -18,7 +18,7 @@ class AuthController
 
     public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
-        if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
+        if (empty($firstnameInput) || empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
@@ -103,12 +103,17 @@ class AuthController
         http_response_code(302);
         header('location: /');
     }
+
     public function userlist()
     {
         $userController = new UserController();
-        $users = $userController->getAllUsers();
+        $searchQuery = isset($_GET['search_query']) ? $_GET['search_query'] : '';
 
-
+        if (!empty($searchQuery)) {
+            $users = $userController->searchUsers($searchQuery);
+        } else {
+            $users = $userController->getAllUsers();
+        }
 
         include "views/layout/header.view.php";
         include "views/users_list.view.php";

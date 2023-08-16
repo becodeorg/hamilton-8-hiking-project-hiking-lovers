@@ -13,7 +13,6 @@ return array(
     'Controllers\\AuthController' => $baseDir . '/controllers/AuthController.php',
     'Controllers\\UserController' => $baseDir . '/controllers/UserController.php',
     'Models\\Database' => $baseDir . '/models/Database.php',
-    'Models\\Hike' => $baseDir . '/models/Hike.php',
+    'controllers\\HikeController' => $baseDir . '/controllers/HikeController.php',
     'controllers\\PageController' => $baseDir . '/controllers/PageController.php',
-    'controllers\\²HikeController' => $baseDir . '/controllers/HikeController.php',
 );
