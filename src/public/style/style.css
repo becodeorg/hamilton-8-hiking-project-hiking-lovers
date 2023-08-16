@@ -1,4 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+.hike_container {
+  background-color: #bc6c25;
+  margin: 20px;
+  border-radius: 20px;
+  padding: 10px;
+}
+.hike_container div {
+  margin-left: 20px;
+}
+.hike_container #hike_name {
+  font-size: 25px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #bc6c25;
+  margin: 2rem;
+  width: 20rem;
+}
+form label {
+  display: flex;
+  align-content: center;
+  width: 5rem;
+}
+form label input {
+  border-radius: 2rem;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -18,7 +53,6 @@ body nav {
   color: #fefae0;
   justify-content: space-around;
   align-items: center;
-  display: flex;
 }
 body nav button {
   background-color: #bc6c25;
@@ -40,33 +74,14 @@ body h2 {
   text-align: center;
   color: #283618;
 }
-body .hike_container {
-  background-color: #bc6c25;
-  margin: 20px;
-  border-radius: 20px;
-  padding: 10px;
-}
-body .hike_container div {
-  margin-left: 20px;
-}
-body .hike_container #hike_name {
-  font-size: 25px;
-}
-body form {
+body footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-body form label {
-  display: flex;
-  align-content: center;
-  width: 5rem;
-}
-body footer {
   background-color: #283618;
   color: #fefae0;
 }
-body footer a {
+body a {
   text-decoration: none;
   color: #fefae0;
 }
