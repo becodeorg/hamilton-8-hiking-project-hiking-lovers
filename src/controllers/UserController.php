@@ -5,10 +5,10 @@ namespace Controllers;
 
 use Exception;
 use Models\Database;
-use Models\Hike;
+use Models\User;
 use PDO;
 
-class HikeController
+class UserController
 {
     private Database $db;
 
@@ -20,11 +20,11 @@ class HikeController
     public function index ()
     {
         try {
-            $hike = (new Hike())->findAll(20);
+            $user = (new User())->findAll(20);
 
             // 3 - Affichage de la liste des produits
             include 'views/layout/header.view.php';
-            include 'views/index.view.php';
+            include 'views/user.view.php';
             include 'views/layout/footer.view.php';
         } catch (Exception $e) {
             print_r($e->getMessage());
@@ -34,7 +34,7 @@ class HikeController
     public function show(string $id)
     {
         try {
-            $hike = (new Hike())->find($id);
+            $user = (new User())->find($id);
 
             if (empty($id)) {
                 (new PageController())->page_404();
@@ -43,7 +43,7 @@ class HikeController
 
             // 3 - Afficher la page
             include 'views/layout/header.view.php';
-            include 'views/hike.view.php';
+            include 'views/user.view.php';
             include 'views/layout/footer.view.php';
 
         } catch (Exception $e) {

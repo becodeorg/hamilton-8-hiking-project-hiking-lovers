@@ -6,26 +6,26 @@ namespace Models;
 use PDO;
 
 
-class Hikes extends Database
+class Profiles extends Database
 
 {
     public function findAll(int $limit = 0): array
     {
         if ($limit === 0) {
-            $sql = "SELECT * FROM Hikes";
+            $sql = "SELECT * FROM Users";
         } else {
-            $sql = "SELECT * FROM Hikes LIMIT " . $limit;
+            $sql = "SELECT * FROM Users LIMIT " . $limit;
         }
         $stmt = $this->query($sql);
-        $hikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $hikes;
+        return $users;
     }
 
     public function find(string $id): array|false
     {
         $stmt = $this->query(
-            "SELECT * FROM Hikes WHERE id = ?",
+            "SELECT * FROM Users WHERE id = ?",
             [$id]
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);

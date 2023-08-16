@@ -101,4 +101,22 @@ class AuthController
         http_response_code(302);
         header('location: /');
     }
+
+   
+
+    public function showUserInfo()
+{
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+
+        include 'views/layout/header.view.php';
+        include 'views/user.view.php'; // Create this view file to display user information
+        include 'views/layout/footer.view.php';
+    } else {
+        // User is not logged in, redirect to login page or handle accordingly
+        http_response_code(302);
+        header('location: /'); // Redirect to the home page or login page
+    }
+}
+
 }

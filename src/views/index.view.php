@@ -19,6 +19,18 @@
 
         </section>
 
+        <div>
+    <h2>My profile"</h2>
+
+
+    <p>First Name<?= $user['firstname']?></p>
+    <p>Last Name<?= $user['lastname']?></p>
+    <p>Username<?= $user['nickname']?></p>
+    <p>Email<?= $user['email']?></p>
+    <p>Password<?= $user['password']?></p>
+
+</div>
+
 
 <?php endif; 
 

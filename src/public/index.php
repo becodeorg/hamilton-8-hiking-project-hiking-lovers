@@ -6,6 +6,8 @@ require_once 'vendor/autoload.php';
 use Controllers\AuthController;
 use Controllers\PageController;
 use Controllers\HikeController;
+use Controllers\UserController;
+
 
 session_start();
 
@@ -38,6 +40,11 @@ try {
             if ($method === "GET") $authController->showRegistrationForm();
             if ($method === "POST") $authController->register($_POST['firstname'],$_POST['lastname'],$_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
+        case "user":
+            $authController = new AuthController();
+            if ($method === "GET") $authController->showUserInfo($_GET['firstname'],$_GET['lastname'],$_GET['nickname'],$_GET['email'], $_GET['password']);
+            break;
+
         default:
             $pageController = new PageController();
             $pageController->page_404();
