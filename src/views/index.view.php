@@ -6,9 +6,10 @@
     <section >
         <?php foreach($hike as $hike): ?>
             <div class=hike_container>
-                <a href="/hike?id=<?= $hike['id'] ?>">
+                
+                <div id=hike_name><a href="/hike?id=<?= $hike['id'] ?>">
                     <?= $hike['name'] ?>
-                 </a>
+                 </a></div>
 
                  <div><?= $hike['distance'] ?></div>
                  <div><?= $hike['duration']?></div>
