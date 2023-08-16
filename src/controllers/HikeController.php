@@ -8,7 +8,7 @@ use Models\Database;
 use Models\Hike;
 use PDO;
 
-class HikeController
+class ²HikeController
 {
     private Database $db;
 
@@ -17,7 +17,7 @@ class HikeController
         $this->db = new Database();
     }
 
-    public function index()
+    public function index ()
     {
         try {
             $hike = (new Hike())->findAll(20);

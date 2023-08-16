@@ -37,7 +37,7 @@ class AuthController
 
         $_SESSION['user'] = [
             'id' => $this->db->lastInsertId(),
-            'firstname' => $fisrtname,
+            'firstname' => $firstname,
             'lastname' => $lastname,
             'nickname' => $nickname,
             'email' => $email

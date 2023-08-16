@@ -21,17 +21,13 @@ try {
     switch ($url_path) {
         case "":
         case "/index.php":
-            $hikeController = new HikeController();
-            $hikeController->index();
-            break;
-        case "product":
+        $authController = new AuthController();
+        if ($method === "GET") $authController->showLoginForm();
+        if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
+        break;
+        case "hike":
             $hikeController = new HikeController();
             $hikeController->show($_GET['id']);
-            break;
-        case "login":
-            $authController = new AuthController();
-            if ($method === "GET") $authController->showLoginForm();
-            if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
             break;
         case "logout":
             $authController = new AuthController();
