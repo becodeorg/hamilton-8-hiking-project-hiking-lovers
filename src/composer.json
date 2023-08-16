@@ -1,16 +1,8 @@
 {
   "autoload": {
-    "psr-4": {
-      "core\\": "core",
-      "controllers\\": "controllers"
-    }
+"classmap": ["./"]
   },
   "require": {
-    "ext-pdo": "*"
+    "ext-pdo" : "*"
   }
 }
-
-
-
-
-

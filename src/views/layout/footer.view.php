@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 </main>
 <footer>
     <div class="social_media">
@@ -16,4 +17,9 @@
         </ul>
     </div>
 </footer>
+=======
+
+    
+</body>
+>>>>>>> ozlem
 </html>

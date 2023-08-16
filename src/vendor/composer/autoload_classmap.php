@@ -6,5 +6,17 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+<<<<<<< HEAD
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+=======
+    'ComposerAutoloaderInitf945cb9602f0425c382b7836dc765b73' => $vendorDir . '/composer/autoload_real.php',
+    'Composer\\Autoload\\ClassLoader' => $vendorDir . '/composer/ClassLoader.php',
+    'Composer\\Autoload\\ComposerStaticInitf945cb9602f0425c382b7836dc765b73' => $vendorDir . '/composer/autoload_static.php',
+    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Controllers\\AuthController' => $baseDir . '/controllers/AuthController.php',
+    'Controllers\\HikeController' => $baseDir . '/controllers/HikeController.php',
+    'Controllers\\PageController' => $baseDir . '/controllers/PageController.php',
+    'Models\\Database' => $baseDir . '/models/Database.php',
+    'Models\\Hike' => $baseDir . '/models/Hike.php',
+>>>>>>> ozlem
 );
