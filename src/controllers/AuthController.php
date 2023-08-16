@@ -1,14 +1,4 @@
 <?php
-<<<<<<< HEAD
-
-namespace controllers;
-
-class AuthController
-{
-    public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
-    {
-        if (empty($firstnameInput) || empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
-=======
 declare(strict_types=1);
 
 namespace Controllers;
@@ -28,7 +18,6 @@ class AuthController
     public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
         if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
->>>>>>> ozlem
             throw new Exception('Formulaire non complet');
         }
 
@@ -38,19 +27,6 @@ class AuthController
         $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
         $passwordHash = password_hash($passwordInput, PASSWORD_DEFAULT);
 
-<<<<<<< HEAD
-        $id = (new User())->registerNewUserAndReturnId(
-            $firstname,
-            $lastname,
-            $nickname,
-            $email,
-            $passwordHash
-        );
-
-        $_SESSION['user'] = [
-            'id' => $id,
-            'firstname' => $firstname,
-=======
         $this->db->query(
             "
                 INSERT INTO Users (firstname,lastname,nickname, email, password) 
@@ -64,7 +40,6 @@ class AuthController
             'firstname' => $fisrtname,
             'lastname' => $lastname,
             'nickname' => $nickname,
->>>>>>> ozlem
             'email' => $email
         ];
 
@@ -79,17 +54,6 @@ class AuthController
         include 'views/layout/footer.view.php';
     }
 
-<<<<<<< HEAD
-    public function login(string $usernameInput, string $passwordInput)
-    {
-        if (empty($usernameInput) || empty($passwordInput)) {
-            throw new Exception('Formulaire non complet');
-        }
-
-        $username = htmlspecialchars($usernameInput);
-
-        $user = (new User())->findByUsername($username);
-=======
     public function login(string $nicknameInput, string $passwordInput)
     {
         if (empty($nicknameInput) || empty($passwordInput)) {
@@ -104,7 +68,6 @@ class AuthController
         );
 
         $user = $stmt->fetch();
->>>>>>> ozlem
 
         if (empty($user)) {
             throw new Exception('Mauvais nom d\'utilisateur');
@@ -116,11 +79,7 @@ class AuthController
 
         $_SESSION['user'] = [
             'id' => $user['id'],
-<<<<<<< HEAD
-            'username' => $username,
-=======
             'nickname' => $nickname,
->>>>>>> ozlem
             'email' => $user['email']
         ];
 
@@ -131,15 +90,9 @@ class AuthController
 
     public function showLoginForm()
     {
-<<<<<<< HEAD
-        include 'app/views/layout/header.view.php';
-        include 'app/views/login.view.php';
-        include 'app/views/layout/footer.view.php';
-=======
         include 'views/layout/header.view.php';
         include 'views/login.view.php';
         include 'views/layout/footer.view.php';
->>>>>>> ozlem
     }
 
     public function logout()
