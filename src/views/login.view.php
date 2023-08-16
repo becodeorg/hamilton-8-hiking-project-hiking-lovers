@@ -1,7 +1,7 @@
 <form action="#" method="post">
     <div>
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username"/>
+        <label for="nickname">Username</label>
+        <input type="text" id="nickname" name="nickname"/>
     </div>
     <div>
         <label for="password">Password</label>
