@@ -2,9 +2,7 @@
 declare(strict_types=1);
 
 
-echo 'It works !';
-
-require_once 'src/vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 use Controllers\AuthController;
 use Controllers\PageController;

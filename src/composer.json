@@ -1,17 +1,8 @@
 {
   "autoload": {
-<<<<<<< HEAD
-    "psr-4": {
-      "App\\": "app/"
-    }
-  },
-  "require": {
-    "ext-pdo": "*"
-=======
-"classmap": ["./"]
+    "classmap": ["./"]
   },
   "require": {
     "ext-pdo" : "*"
->>>>>>> main
   }
 }
