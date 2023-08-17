@@ -28,43 +28,11 @@ class Database
     public function query(string $query, array $params = []): PDOStatement
     {
         $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
 
-        foreach($params as $key=> $value){
-
-            if(gettype($value) == "integer") {
-                $stmt->bindParam($key, $value, PDO::PARAM_INT);
-
-            } else if (gettype($value) == "boolean") {
-                $stmt->bindParam($key, $value, PDO::PARAM_BOOL);
-
-            } else {
-                $stmt->bindParam($key, $value);
-            }
-        }
-        $stmt->execute();
         return $stmt;
     }
 
-    public function exec(string $sql, array $param = []): bool
-    {
-        // prépare la requête
-        $stmt = $this->pdo->prepare($sql);
-
-        foreach($param as $key=> $value){
-            if(gettype($value) == "integer") {
-                $stmt->bindParam($key, $value, PDO::PARAM_INT);
-
-            } else if (gettype($value) == "boolean") {
-                $stmt->bindParam($key, $value, PDO::PARAM_BOOL);
-
-            } else {
-                $stmt->bindParam($key, $value);
-            }
-        }
-        return $stmt->execute();
-        // Il retourne un bool avec cette valeur
-
-    }
     public function lastInsertId()
     {
         return $this->pdo->lastInsertId();
