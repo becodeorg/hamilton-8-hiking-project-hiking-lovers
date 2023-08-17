@@ -56,6 +56,13 @@ try {
                 $authController = new AuthController();
                 if ($method === "POST")$authController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
                 break;
+        case "addhike":
+                $hikeController = new HikeController();
+                if ($method === "GET") $hikeController->showAddHikeForm();
+                
+                if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'],$_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description']);
+                break;
+
                 
             
 
