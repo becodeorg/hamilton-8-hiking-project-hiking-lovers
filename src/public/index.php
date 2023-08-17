@@ -5,8 +5,8 @@ require_once 'vendor/autoload.php';
 
 use Controllers\AuthController;
 use Controllers\UserController;
-use Controllers\PageController;
 use Controllers\HikeController;
+use Controllers\PageController;
 
 
 session_start();

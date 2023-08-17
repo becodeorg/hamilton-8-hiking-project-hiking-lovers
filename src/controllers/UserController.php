@@ -1,19 +1,4 @@
 <?php
-namespace Controllers;
-
-use Models\Database;
-use Controllers\AuthController;
-
-
-class UserController
-{
-private Database $db;
-
-public function __construct()
-{
-$this->db = new Database();
-}
-<?php
 declare(strict_types=1);
 
 namespace Controllers;
@@ -60,3 +45,13 @@ class UserController
             include 'views/layout/header.view.php';
             include 'views/user.view.php';
             include 'views/layout/footer.view.php';
+
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+        }
+
+    
+
+    }
+
