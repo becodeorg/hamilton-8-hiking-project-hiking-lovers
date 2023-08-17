@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace controllers;
+namespace Controllers;
 
 use Exception;
 use Models\Database;
@@ -22,7 +22,7 @@ class HikeController
         try {
             $hike = (new Hike())->findAll(20);
 
-
+            // 3 - Affichage de la liste des produits
             include 'views/layout/header.view.php';
             include 'views/index.view.php';
             include 'views/layout/footer.view.php';
@@ -50,4 +50,44 @@ class HikeController
             print_r($e->getMessage());
         }
     }
+
+    public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
+{
+    if (empty($hikenameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+        throw new Exception('Formulaire non complet');
+    }
+
+    $hikename = htmlspecialchars($hikenameInput);
+    $distance = htmlspecialchars($distanceInput);
+    $duration = htmlspecialchars($durationInput);
+    $elevation_gain =htmlspecialchars($elevation_gainInput);
+    $description =htmlspecialchars($descriptionInput);
+
+    $this->db->query(
+        "
+            INSERT INTO Hikes (user_id,name,distance,duration, elevation_gain, description) 
+            VALUES (?, ?, ?, ?, ?,?)
+        ",
+        [$user_id,$hikename, $distance, $duration, $elevation_gain, $description]
+    );
+
+    $_SESSION['user'] = [
+        'id' => $this->db->lastInsertId(),
+        'firstname' => $firstname,
+        'lastname' => $lastname,
+        'nickname' => $nickname,
+        'email' => $email
+    ];
+
+    http_response_code(302);
+    header('location: /');
+}
+
+public function showAddHikeForm()
+    {
+        include 'views/layout/header.view.php';
+        include 'views/addhike.view.php';
+        include 'views/layout/footer.view.php';
+    }
+
 }

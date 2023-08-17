@@ -1,18 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100&display=swap');
 @import "pages/hike_list";
 @import "pages/login";
 @import "pages/users_list";
 @import "pages/register";
+=======
+
+>>>>>>> Özlem
 * {
+  padding: 0;
+  margin: 0;
   text-decoration: none;
   list-style: none;
-  font-family: "Roboto Light";
+  font-family: "Shadows Into Light", cursive;
 }
 
 body {
   background: #fefae0;
-
 
   nav {
     overflow: hidden;
@@ -35,6 +40,8 @@ body {
 
     }
 
+      display: flex;
+
         a {
           padding: 14px 16px;
           font-size: 17px;
@@ -42,30 +49,39 @@ body {
           color: #fefae0;
         }
 
+
   }
   h2 {
     text-align: center;
     color: #283618;
   }
+  .hike_container {
+    background-color: #bc6c25;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 10px;
 
-  footer {
+    div {
+      margin-left: 20px;
+    }
+
+    #hike_name {
+      font-size: 25px;
+    }
+  }
+  form {
     display: flex;
     flex-direction: column;
     align-items: center;
+    label {
+      display: flex;
+      align-content: center;
+      width: 5rem;
+    }
+  }
+  footer{
     background-color: #283618;
     color: #fefae0;
-    ul{
-      padding: 0;
-    }
-    .back{
-      margin: 1rem;
-      border: #bc6c25 1px solid;
-      border-radius: 1rem;
-      padding: 1rem;
-    }
-
-  }
-
     a{
       text-decoration: none;
       color: #fefae0;
@@ -74,4 +90,4 @@ body {
 
   @media (min-width: 600px) {
   }
-
+}
