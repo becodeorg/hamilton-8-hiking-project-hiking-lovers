@@ -27,7 +27,7 @@ try {
         if ($method === "GET") $authController->showLoginForm();
         if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
         break;
-        case "hike":
+        case "hikes-list":
             $hikeController = new HikeController();
             $hikeController->show($_GET['id']);
             break;

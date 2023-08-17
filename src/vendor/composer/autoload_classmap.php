@@ -11,9 +11,9 @@ return array(
     'Composer\\Autoload\\ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c' => $vendorDir . '/composer/autoload_static.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Controllers\\AuthController' => $baseDir . '/controllers/AuthController.php',
+    'Controllers\\HikeController' => $baseDir . '/controllers/HikeController.php',
+    'Controllers\\PageController' => $baseDir . '/controllers/PageController.php',
     'Controllers\\UserController' => $baseDir . '/controllers/UserController.php',
     'Models\\Database' => $baseDir . '/models/Database.php',
     'Models\\Hike' => $baseDir . '/models/Hike.php',
-    'controllers\\PageController' => $baseDir . '/controllers/PageController.php',
-    'controllers\\²HikeController' => $baseDir . '/controllers/HikeController.php',
 );
