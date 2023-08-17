@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use Controllers\AuthController;
+use Controllers\UserController;
 use Controllers\PageController;
 use Controllers\HikeController;
 use Controllers\UserController;
@@ -43,6 +44,10 @@ try {
             $authController = new AuthController();
             if ($method === "GET") $authController->showRegistrationForm();
             if ($method === "POST") $authController->register($_POST['firstname'],$_POST['lastname'],$_POST['nickname'],$_POST['email'], $_POST['password']);
+            break;
+        case "userlist":
+            $authController = new AuthController();
+            $authController->userlist();
             break;
          case "user":
                 $authController = new AuthController();
