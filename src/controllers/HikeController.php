@@ -71,7 +71,13 @@ class HikeController
         [$user_id,$hikename, $distance, $duration, $elevation_gain, $description]
     );
 
-
+    $_SESSION['user'] = [
+        'id' => $this->db->lastInsertId(),
+        'firstname' => $firstname,
+        'lastname' => $lastname,
+        'nickname' => $nickname,
+        'email' => $email
+    ];
 
     http_response_code(302);
     header('location: /');
