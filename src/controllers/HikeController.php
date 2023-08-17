@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace controllers;
+namespace Controllers;
 
 use Exception;
 use Models\Database;
@@ -17,7 +17,7 @@ class HikeController
         $this->db = new Database();
     }
 
-    public function index ()
+    public function index(): void
     {
         try {
             $hike = (new Hike())->findAll(20);

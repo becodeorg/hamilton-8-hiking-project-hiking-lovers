@@ -1,5 +1,8 @@
-<h2><?= $hikes['name'];?></h2>
 
+
+
+
+<h2><?= $hikes['name'];?></h2>
 <p>Description: <?= $hikes['description'];?> </p>
 <p>Distance: <?= $hikes['distance'] ?></p>
 <p>Duration: <?= $hikes['duration']?></p>
@@ -11,15 +14,3 @@
 
 <a href="/"> Back to Homepage </a>
 
-<?php
-function dd($value) {
-
-echo '<pre>' ;
-var_dump($value);
-echo '</pre>';
-
-};
-
-dd($hikes);
-
-?>
