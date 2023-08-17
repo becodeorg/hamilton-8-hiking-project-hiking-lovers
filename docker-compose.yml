@@ -1,6 +1,5 @@
 version: "3.1"
 services:
-<<<<<<< HEAD
   mysql:
     image: "mysql:8.0"
     working_dir: /application
@@ -15,22 +14,6 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
       - "3002:3306"
-=======
-    mysql:
-        image: 'mysql:8.0'
-        working_dir: /application
-        volumes:
-            - './src:/application'
-            - dbdata:/var/lib/mysql
-            - './scripts/init.sql:/docker-entrypoint-initdb.d/1.sql'
-        environment:
-            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
-            - MYSQL_DATABASE=${DB_DATABASE}
-            - MYSQL_USER=${DB_USERNAME}
-            - MYSQL_PASSWORD=${DB_PASSWORD}
-        ports:
-            - '3002:3306'
->>>>>>> 191d2e3c2104ccaddb7a33514e6cf680f1bed47b
 
   webserver:
     image: "nginx:alpine"
@@ -50,13 +33,12 @@ services:
     env_file:
       - ".env"
 
-<<<<<<< HEAD
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
     links:
       - mysql
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: 188.166.24.55
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
       PMA_USER: ${DB_USERNAME}
@@ -65,21 +47,5 @@ services:
       - mysql
     ports:
       - "8080:80"
-=======
-    phpmyadmin:
-        image: 'phpmyadmin/phpmyadmin'
-        links:
-            - mysql
-        environment:
-            PMA_HOST: mysql
-            PMA_PORT: 3306
-            PMA_ARBITRARY: 1
-            PMA_USER: ${DB_USERNAME}
-            PMA_PASSWORD: ${DB_PASSWORD}
-        depends_on:
-            - mysql
-        ports:
-            - '8080:80'
->>>>>>> 191d2e3c2104ccaddb7a33514e6cf680f1bed47b
 volumes:
   dbdata:

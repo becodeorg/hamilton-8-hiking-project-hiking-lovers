@@ -7,7 +7,6 @@ use Controllers\AuthController;
 use Controllers\UserController;
 use Controllers\PageController;
 use Controllers\HikeController;
-use Controllers\UserController;
 
 
 session_start();
