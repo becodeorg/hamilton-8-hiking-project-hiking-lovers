@@ -25,10 +25,3 @@
 
 </form>
 
-<script>
-    <?php
-    if (isset($_GET['profile_updated']) && $_GET['profile_updated'] === 'true') {
-        echo 'alert("Your profile is updated!");';
-    }
-    ?>
-</script>
