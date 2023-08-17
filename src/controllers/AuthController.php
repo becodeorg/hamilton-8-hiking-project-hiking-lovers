@@ -173,5 +173,52 @@ public function updateProfile(string $firstnameInput, string $lastnameInput, str
     header('location: /?profile_updated=true');
 }
 
+
+
+
+
+
+
+
+
+public function addHike(string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
+{
+    if (empty($hikenameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+        throw new Exception('Formulaire non complet');
+    }
+
+    $hikenameInput = htmlspecialchars($hikenameInput);
+    $distanceInput = htmlspecialchars($distanceInput);
+    $durationInput = htmlspecialchars($durationInput);
+    $elevation_gainInput =htmlspecialchars($elevation_gainInput);
+    $descriptionInput =htmlspecialchars($descriptionInput);
+
+    $this->db->query(
+        "
+            INSERT INTO Users (name,distance,duration, elevation_gain, description) 
+            VALUES (?, ?, ?, ?, ?)
+        ",
+        [$firstname, $lastname, $nickname, $email, $passwordHash]
+    );
+
+    $_SESSION['user'] = [
+        'id' => $this->db->lastInsertId(),
+        'firstname' => $firstname,
+        'lastname' => $lastname,
+        'nickname' => $nickname,
+        'email' => $email
+    ];
+
+    http_response_code(302);
+    header('location: /');
+}
+
+public function showAddHikeForm()
+    {
+        include 'views/layout/header.view.php';
+        include 'views/addhike.view.php';
+        include 'views/layout/footer.view.php';
+    }
+
 }
 
