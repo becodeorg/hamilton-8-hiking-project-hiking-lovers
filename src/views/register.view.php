@@ -1,4 +1,4 @@
-<form action="#" method="post" class="register">
+<form action="#" method="post">
     <div>
 
         <label for="firstname">First name</label>
