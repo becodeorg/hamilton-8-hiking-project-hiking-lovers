@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Controllers;
 
+use Controllers\UserController;
 use Exception;
 use Models\Database;
 
@@ -85,7 +86,8 @@ class AuthController
 
         // Redirect to home page
         http_response_code(302);
-        header('location: /');
+        header('Location: /profile.php');
+        exit();
     }
 
     public function showLoginForm()
@@ -100,5 +102,16 @@ class AuthController
         unset($_SESSION['user']);
         http_response_code(302);
         header('location: /');
+    }
+    public function userlist()
+    {
+        $userController = new UserController();
+        $users = $userController->getAllUsers();
+
+
+
+        include "views/layout/header.view.php";
+        include "views/users_list.view.php";
+        include "views/layout/footer.view.php";
     }
 }

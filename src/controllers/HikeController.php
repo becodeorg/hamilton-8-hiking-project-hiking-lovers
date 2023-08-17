@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Controllers;
+namespace controllers;
 
 use Exception;
 use Models\Database;
@@ -17,12 +17,12 @@ class HikeController
         $this->db = new Database();
     }
 
-    public function index()
+    public function index ()
     {
         try {
             $hike = (new Hike())->findAll(20);
 
-            // 3 - Affichage de la liste des produits
+
             include 'views/layout/header.view.php';
             include 'views/index.view.php';
             include 'views/layout/footer.view.php';
@@ -31,15 +31,10 @@ class HikeController
         }
     }
 
-    public function show(string $id)
+    public function show(string $id):void
     {
         try {
             $hike = (new Hike())->find($id);
-
-            if (empty($id)) {
-                (new PageController())->page_404();
-                die;
-            }
 
             // 3 - Afficher la page
             include 'views/layout/header.view.php';

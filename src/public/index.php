@@ -5,6 +5,7 @@ declare(strict_types=1);
 require_once 'vendor/autoload.php';
 
 use Controllers\AuthController;
+use Controllers\UserController;
 use Controllers\PageController;
 use Controllers\HikeController;
 
@@ -22,17 +23,13 @@ try {
     switch ($url_path) {
         case "":
         case "/index.php":
-            $hikeController = new HikeController();
-            $hikeController->index();
-            break;
-        case "product":
+        $authController = new AuthController();
+        if ($method === "GET") $authController->showLoginForm();
+        if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
+        break;
+        case "hike":
             $hikeController = new HikeController();
             $hikeController->show($_GET['id']);
-            break;
-        case "login":
-            $authController = new AuthController();
-            if ($method === "GET") $authController->showLoginForm();
-            if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
             break;
         case "logout":
             $authController = new AuthController();
@@ -43,6 +40,12 @@ try {
             if ($method === "GET") $authController->showRegistrationForm();
             if ($method === "POST") $authController->register($_POST['firstname'],$_POST['lastname'],$_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
+        case "userlist":
+            $authController = new AuthController();
+            $authController->userlist();
+            break;
+
+
         default:
             $pageController = new PageController();
             $pageController->page_404();
