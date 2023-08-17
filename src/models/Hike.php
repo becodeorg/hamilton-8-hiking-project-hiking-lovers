@@ -6,10 +6,15 @@ namespace Models;
 use PDO;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Hike extends Database
 =======
 class Hikes extends Database
 >>>>>>> 191d2e3c2104ccaddb7a33514e6cf680f1bed47b
+=======
+
+class Hike extends Database
+>>>>>>> marius
 {
     public function findAll(int $limit = 0): array
     {
@@ -33,7 +38,11 @@ class Hikes extends Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 191d2e3c2104ccaddb7a33514e6cf680f1bed47b
+=======
+}
+>>>>>>> marius

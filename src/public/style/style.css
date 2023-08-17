@@ -129,6 +129,7 @@ body footer {
 body footer ul {
   padding: 0;
 }
+<<<<<<< HEAD
 body footer .back {
   margin: 1rem;
   border: #bc6c25 1px solid;
@@ -141,3 +142,8 @@ body a {
 }
 
 /*# sourceMappingURL=style.css.map */
+=======
+body .hike_container #hike_name {
+  font-size: 25px;
+}/*# sourceMappingURL=styjoijle.css.map */
+>>>>>>> marius

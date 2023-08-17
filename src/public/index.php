@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+
 require_once 'vendor/autoload.php';
 
 use Controllers\AuthController;
@@ -51,4 +52,5 @@ try {
     $pageController = new PageController();
     $pageController->page_500($e->getMessage());
 }
+
 
