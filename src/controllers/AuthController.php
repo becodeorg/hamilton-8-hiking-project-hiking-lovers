@@ -45,7 +45,7 @@ class AuthController
         ];
 
         http_response_code(302);
-        header('location: /');
+        header('location: /user.php');
     }
 
     public function showRegistrationForm()

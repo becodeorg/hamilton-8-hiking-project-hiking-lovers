@@ -81,6 +81,23 @@ main {
   border-radius: 1rem;
 }
 
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #bc6c25;
+  margin: 2rem;
+  width: 20rem;
+}
+.register label {
+  display: flex;
+  align-content: center;
+  width: 5rem;
+}
+.register label input {
+  border-radius: 2rem;
+}
+
 * {
   text-decoration: none;
   list-style: none;
@@ -129,7 +146,6 @@ body footer {
 body footer ul {
   padding: 0;
 }
-<<<<<<< HEAD
 body footer .back {
   margin: 1rem;
   border: #bc6c25 1px solid;
@@ -142,8 +158,3 @@ body a {
 }
 
 /*# sourceMappingURL=style.css.map */
-=======
-body .hike_container #hike_name {
-  font-size: 25px;
-}/*# sourceMappingURL=styjoijle.css.map */
->>>>>>> marius
