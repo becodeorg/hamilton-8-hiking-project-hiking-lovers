@@ -25,6 +25,7 @@ main {
   border: 2px solid #bc6c25;
   margin: 2rem;
   width: 20rem;
+  border-radius: 2rem;
 }
 .login label {
   display: flex;

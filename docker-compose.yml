@@ -1,6 +1,5 @@
 version: "3.1"
 services:
-<<<<<<< HEAD
   mysql:
     image: "mysql:8.0"
     working_dir: /application
@@ -15,7 +14,7 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
       - "3002:3306"
-=======
+
     mysql:
         image: 'mysql:8.0'
         working_dir: /application
@@ -30,7 +29,7 @@ services:
             - MYSQL_PASSWORD=${DB_PASSWORD}
         ports:
             - '3002:3306'
->>>>>>> 191d2e3c2104ccaddb7a33514e6cf680f1bed47b
+
 
   webserver:
     image: "nginx:alpine"
@@ -50,7 +49,7 @@ services:
     env_file:
       - ".env"
 
-<<<<<<< HEAD
+
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
     links:
@@ -65,7 +64,7 @@ services:
       - mysql
     ports:
       - "8080:80"
-=======
+
     phpmyadmin:
         image: 'phpmyadmin/phpmyadmin'
         links:
@@ -80,6 +79,6 @@ services:
             - mysql
         ports:
             - '8080:80'
->>>>>>> 191d2e3c2104ccaddb7a33514e6cf680f1bed47b
+
 volumes:
   dbdata:
