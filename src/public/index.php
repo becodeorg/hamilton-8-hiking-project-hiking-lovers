@@ -14,6 +14,10 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+if (isset($_GET['profile_updated']) && $_GET['profile_updated'] === 'true') {
+    echo '<script>alert("Your profile is updated!");</script>';
+}
+
 
 
 try {
@@ -40,10 +44,20 @@ try {
             if ($method === "GET") $authController->showRegistrationForm();
             if ($method === "POST") $authController->register($_POST['firstname'],$_POST['lastname'],$_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
-        case "user":
-            $authController = new AuthController();
-            if ($method === "GET") $authController->showUserInfo($_GET['firstname'],$_GET['lastname'],$_GET['nickname'],$_GET['email'], $_GET['password']);
-            break;
+         case "user":
+                $authController = new AuthController();
+                if ($method === "GET") $authController->showUserInfo();
+                break;
+        case "editprofile":
+                $authController = new AuthController();
+                if ($method === "GET") $authController->editProfile();
+                break;
+        case "updateprofile":
+                $authController = new AuthController();
+                if ($method === "POST")$authController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
+                break;
+                
+            
 
         default:
             $pageController = new PageController();
