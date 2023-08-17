@@ -38,7 +38,7 @@ services:
     links:
       - mysql
     environment:
-      PMA_HOST: mysql
+      PMA_HOST: 188.166.24.55
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
       PMA_USER: ${DB_USERNAME}

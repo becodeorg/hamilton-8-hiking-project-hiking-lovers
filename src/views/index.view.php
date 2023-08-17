@@ -8,7 +8,7 @@
         <input type="password" id="password" name="password"/>
     </div>
     <div>
-        <button type="submit">Login</button>
+    <button type="submit">Login</button>
     </div>
     <div>
         <p>Not count?</p><button><a href="/register">Inscription</a></button>

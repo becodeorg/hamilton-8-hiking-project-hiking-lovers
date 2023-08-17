@@ -19,4 +19,12 @@ public function getAllUsers()
 $stmt = $this->db->query("SELECT * FROM Users");
 return $stmt->fetchAll();
 }
+    public function searchUsers($query)
+    {
+        $stmt = $this->db->query(
+            "SELECT * FROM Users WHERE firstname LIKE ? OR lastname LIKE ?",
+            ["%$query%", "%$query%"]
+        );
+        return $stmt->fetchAll();
+    }
 }

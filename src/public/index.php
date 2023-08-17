@@ -43,8 +43,6 @@ try {
             $authController = new AuthController();
             $authController->userlist();
             break;
-
-
         default:
             $pageController = new PageController();
             $pageController->page_404();
