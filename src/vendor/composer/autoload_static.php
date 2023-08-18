@@ -14,9 +14,10 @@ class ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c
         'Controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/AuthController.php',
         'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikeController.php',
         'Controllers\\PageController' => __DIR__ . '/../..' . '/controllers/PageController.php',
+        'Controllers\\UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
         'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
-        'core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
+        'Models\\Profiles' => __DIR__ . '/../..' . '/models/User.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

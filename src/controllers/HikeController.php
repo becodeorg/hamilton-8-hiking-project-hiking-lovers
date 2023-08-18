@@ -31,10 +31,10 @@ class HikeController
         }
     }
 
-    public function show(string $id):void
+    public function show(string $name):void
     {
         try {
-            $hike = (new Hike())->find($id);
+            $hike = (new Hike())->find($name);
 
             // 3 - Afficher la page
             include 'views/layout/header.view.php';

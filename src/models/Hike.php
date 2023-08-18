@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 declare(strict_types=1);
 
@@ -29,4 +27,4 @@ class Hike extends Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }
->>>>>>> marius
+
