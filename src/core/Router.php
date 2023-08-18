@@ -13,12 +13,11 @@ class Router
 {
     public function route(string $url_path, string $method): void
     {
-        echo "Requested URL: " . $url_path . "<br>";
-        echo "HTTP Method: " . $method . "<br>";
+
 
         switch ($url_path) {
             case "":
-            case "/index.php":
+            case "/":
                 $authController = new AuthController();
                 if ($method === "GET") $authController->showLoginForm();
                 if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
