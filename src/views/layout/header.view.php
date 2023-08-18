@@ -13,14 +13,14 @@
             <a href="/"><strong>Hiking Lovers</strong></a>
                 <?php if (!empty($_SESSION['user'])): ?>
                     Bonjour <?= $_SESSION['user']['nickname'] ?>
-                    <a href="/hikes-list">All hikes</a>
+
                     <a href="/logout">Logout</a>
                 <?php else: ?>
                 <div class="buttons">
                     <button><a href="/register">Register</a></button>
                 </div>
                 <?php endif; ?>
-
+            <a href="/hikes-list">All hikes</a>
         </nav>
     </header>
     <main>
