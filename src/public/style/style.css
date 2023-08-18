@@ -82,29 +82,10 @@ main {
   border-radius: 1rem;
 }
 
-.register {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: 2px solid #bc6c25;
-  margin: 2rem;
-  width: 20rem;
-}
-.register label {
-  display: flex;
-  align-content: center;
-  width: 5rem;
-}
-.register label input {
-  border-radius: 2rem;
-}
-
 * {
-  padding: 0;
-  margin: 0;
   text-decoration: none;
   list-style: none;
-  font-family: "Shadows Into Light", cursive;
+  font-family: "Roboto Light";
 }
 
 body {
@@ -118,7 +99,6 @@ body nav {
   color: #fefae0;
   justify-content: space-around;
   align-items: center;
-  display: flex;
 }
 body nav button {
   background-color: #bc6c25;
@@ -140,33 +120,23 @@ body h2 {
   text-align: center;
   color: #283618;
 }
-body .hike_container {
-  background-color: #bc6c25;
-  margin: 20px;
-  border-radius: 20px;
-  padding: 10px;
-}
-body .hike_container div {
-  margin-left: 20px;
-}
-body .hike_container #hike_name {
-  font-size: 25px;
-}
-body form {
+body footer {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-body form label {
-  display: flex;
-  align-content: center;
-  width: 5rem;
-}
-body footer {
   background-color: #283618;
   color: #fefae0;
 }
-body footer a {
+body footer ul {
+  padding: 0;
+}
+body footer .back {
+  margin: 1rem;
+  border: #bc6c25 1px solid;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+body a {
   text-decoration: none;
   color: #fefae0;
 }
