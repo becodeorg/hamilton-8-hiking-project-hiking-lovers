@@ -17,31 +17,31 @@ class TagsController
         $this->db = new Database();
     }
 
-    public function index ()
+    public function index()
     {
         try {
-            $tag = (new Tags())->findAll(20);
+            $tagsModel = new Tags();
+            $tags = $tagsModel->findAll(20);
 
-            // 3 - Affichage de la liste des produits
             include 'views/layout/header.view.php';
-            include 'views/tags.view.php';
+            include 'views/tags.view.php'; // Cette vue affichera la liste des tags
             include 'views/layout/footer.view.php';
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
     }
 
-    public function show(string $id)
+    public function show(string $name)
     {
         try {
-            $tag = (new Tags())->find($id);
+            $tag = (new Tags())->findByName($name);
 
-            if (empty($id)) {
+            if (!$tag) {
                 (new PageController())->page_404();
                 die;
             }
 
-            // 3 - Afficher la page
+            // Afficher la page
             include 'views/layout/header.view.php';
             include 'views/tags.view.php';
             include 'views/layout/footer.view.php';
@@ -51,37 +51,22 @@ class TagsController
         }
     }
 
-    public function addTags(int $user_id, int $idtagInput, string $tagnameInput)
+    public function addTags(string $tagnameInput)
     {
-        if (empty($tagnameInput) ||empty($idtagInput)) {
-            throw new Exception('Formulaire non complet');
+        if (empty($tagnameInput)) {
+            throw new Exception('Nom du tag vide');
         }
-        $idtag = intdiv($idtagInput);
+
         $tagname = htmlspecialchars($tagnameInput);
 
         $this->db->query(
-            "
-            INSERT INTO Tags (user_id, id, name) 
-            VALUES (?, ?, ?)
-        ",
-            [$user_id, $idtag, $tagname ]
+            "INSERT INTO Tags (name) VALUES (?)",
+            [$tagname]
         );
 
-        $_SESSION['user'] = [
-            'id' => $this->db->lastInsertId(),
-            'name' => $tagname,
-
-        ];
-
         http_response_code(302);
-        header('location:/Tags');
+        header('location:/tags');
     }
-
-    public function showAddHikeForm()
-    {
-        include 'views/layout/header.view.php';
-        include 'views/tags.view.php';
-        include 'views/layout/footer.view.php';
-    }
-
 }
+
+

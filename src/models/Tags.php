@@ -26,5 +26,13 @@ class Tags extends Database
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function findByName(string $name): array|false
+    {
+        $stmt = $this->query(
+            "SELECT * FROM Tags WHERE name = ?",
+            [$name]
+        );
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }
 

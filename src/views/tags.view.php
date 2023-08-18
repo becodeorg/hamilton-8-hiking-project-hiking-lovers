@@ -1,5 +1,10 @@
+<form action="/addtag" method="POST">
+    <input type="text" name="tagnameInput" placeholder="Nom du tag" required>
+    <button type="submit">Ajouter le tag</button>
+</form>
+
 <ul>
-    <li>
-        <h2><?= $tag['name'];?></h2>
-    </li>
+    <?php foreach ($tags as $tag): ?>
+        <li><?= $tag['name']; ?></li>
+    <?php endforeach; ?>
 </ul>

@@ -96,7 +96,7 @@ class AuthController
     public function showLoginForm()
     {
         include 'views/layout/header.view.php';
-        include 'views/login.view.php';
+        include 'views/index.view.php';
         include 'views/layout/footer.view.php';
     }
 

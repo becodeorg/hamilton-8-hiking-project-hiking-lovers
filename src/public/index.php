@@ -8,6 +8,7 @@ use Controllers\AuthController;
 use Controllers\PageController;
 use Controllers\HikeController;
 use Controllers\UserController;
+use Controllers\TagsController;
 
 
 session_start();
@@ -63,6 +64,22 @@ try {
                 
                 if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'],$_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description']);
                 break;
+        case "tags":
+            $tagsController = new TagsController();
+            if (isset($_GET['name'])) {
+                $tagName = $_GET['name'];
+                $tagsController->show($tagName);
+            } else {
+                $tagsController->index();
+            }
+            break;
+        case "addtag":
+            $tagsController = new TagsController();
+            if ($method === "POST") {
+                $tagnameInput = $_POST['tagnameInput'];
+                $tagsController->addTags($tagnameInput);
+            }
+            break;
 
                 
             
