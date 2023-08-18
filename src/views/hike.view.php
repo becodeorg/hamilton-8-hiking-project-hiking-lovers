@@ -1,4 +1,10 @@
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> marius
 <h2><?= $hikes['name'];?></h2>
 <p>Description: <?= $hikes['description'];?> </p>
 <p>Distance: <?= $hikes['distance'] ?></p>

@@ -17,7 +17,7 @@ class HikeController
         $this->db = new Database();
     }
 
-    public function index ()
+    public function index(): void
     {
         try {
             $hike = (new Hike())->findAll(20);
@@ -31,15 +31,10 @@ class HikeController
         }
     }
 
-    public function show(string $id)
+    public function show(string $id):void
     {
         try {
             $hike = (new Hike())->find($id);
-
-            if (empty($id)) {
-                (new PageController())->page_404();
-                die;
-            }
 
             // 3 - Afficher la page
             include 'views/layout/header.view.php';
