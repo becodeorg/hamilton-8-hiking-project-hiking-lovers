@@ -1,6 +1,10 @@
 version: "3.1"
 services:
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> marius
   mysql:
     image: "mysql:8.0"
     working_dir: /application
@@ -15,6 +19,7 @@ services:
       - MYSQL_PASSWORD=${DB_PASSWORD}
     ports:
       - "3002:3306"
+<<<<<<< HEAD
 =======
 
     mysql:
@@ -32,32 +37,41 @@ services:
         ports:
             - '3002:3306'
 >>>>>>> marius
+=======
+>>>>>>> marius
 
-    webserver:
-      image: "nginx:alpine"
-      working_dir: /application
-      volumes:
-        - "./src:/application"
-        - "./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
-      ports:
-        - "3000:80"
+  webserver:
+    image: "nginx:alpine"
+    working_dir: /application
+    volumes:
+      - "./src:/application"
+      - "./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+      - "3000:80"
 
-    php-fpm:
-      build: phpdocker/php-fpm
-      working_dir: /application
-      volumes:
-        - "./src:/application"
-        - "./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini"
-      env_file:
-        - ".env"
+  php-fpm:
+    build: phpdocker/php-fpm
+    working_dir: /application
+    volumes:
+      - "./src:/application"
+      - "./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/8.1/fpm/conf.d/99-overrides.ini"
+    env_file:
+      - ".env"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> marius
   phpmyadmin:
     image: "phpmyadmin/phpmyadmin"
     links:
       - mysql
     environment:
+<<<<<<< HEAD
       PMA_HOST: 188.166.24.55
+=======
+      PMA_HOST: mysql
+>>>>>>> marius
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
       PMA_USER: ${DB_USERNAME}
@@ -66,6 +80,7 @@ services:
       - mysql
     ports:
       - "8080:80"
+<<<<<<< HEAD
 =======
     phpmyadmin:
       image: "phpmyadmin/phpmyadmin"
@@ -81,6 +96,9 @@ services:
         - mysql
       ports:
         - "8080:80"
+
+>>>>>>> marius
+=======
 
 >>>>>>> marius
 volumes:
