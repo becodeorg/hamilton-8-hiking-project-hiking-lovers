@@ -18,6 +18,10 @@ if (isset($_GET['profile_updated']) && $_GET['profile_updated'] === 'true') {
     echo '<script>alert("Your profile is updated!");</script>';
 }
 
+if (isset($_GET['addhike']) && $_GET['addhike'] === 'true') {
+    echo '<script>alert("Your hike has been added");</script>';
+}
+
 
 
 try {
