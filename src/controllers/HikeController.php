@@ -31,7 +31,7 @@ class HikeController
         }
     }
 
-    public function show(string $id):void
+    public function show(string $id): void
     {
         try {
             $hike = (new Hike())->find($id);
@@ -45,6 +45,7 @@ class HikeController
             print_r($e->getMessage());
         }
     }
+
 
     public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
     {
@@ -83,6 +84,22 @@ class HikeController
         include 'views/layout/header.view.php';
         include 'views/addhike.view.php';
         include 'views/layout/footer.view.php';
+    }
+
+
+
+    public function showAll(): void
+    {
+        try {
+            $hikes = (new Hike())->findAll();
+
+            include 'views/layout/header.view.php';
+            include 'views/hike_list.view.php';
+            include 'views/layout/footer.view.php';
+
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
     }
 
 }
