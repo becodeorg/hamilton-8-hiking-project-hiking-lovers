@@ -49,17 +49,22 @@ try {
             if ($method === "POST") $authController->register($_POST['firstname'],$_POST['lastname'],$_POST['nickname'],$_POST['email'], $_POST['password']);
             break;
          case "user":
-                $authController = new AuthController();
-                if ($method === "GET") $authController->showUserInfo();
+                $userController = new UserController();
+                if ($method === "GET") $userController->showUserInfo();
+                break;
+        case "myhikes":
+                $hikeController = new HikeController();
+                if ($method === "GET") $hikeController->allHikeofUser();
                 break;
         case "editprofile":
-                $authController = new AuthController();
-                if ($method === "GET") $authController->editProfile();
+                $userController = new UserController();
+                if ($method === "GET") $userController->editProfile();
                 break;
         case "updateprofile":
-                $authController = new AuthController();
-                if ($method === "POST")$authController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
+                $userController = new UserController();
+                if ($method === "POST")$userController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
                 break;
+<<<<<<< Updated upstream
         case "addhike":
                 $hikeController = new HikeController();
                 if ($method === "GET") $hikeController->showAddHikeForm();
@@ -67,6 +72,16 @@ try {
                 if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'],$_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description']);
                 break;
 
+=======
+        case "editHike":
+                $hikeController = new HikeController();
+                if ($method === "GET") {
+                $hikeId = $_GET['hike_id'] ?? null;
+                $hikeController->editHike($hikeId);
+                    }
+                break;
+                
+>>>>>>> Stashed changes
                 
             
 

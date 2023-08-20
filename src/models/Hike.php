@@ -31,4 +31,9 @@ class Hikes extends Database
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+
+   
 }
+
+
+

@@ -31,7 +31,7 @@ class HikeController
         }
     }
 
-    public function show(string $id)
+    public function showOneHike(string $id)
     {
         try {
             $hike = (new Hike())->find($id);
@@ -51,6 +51,7 @@ class HikeController
         }
     }
 
+<<<<<<< Updated upstream
     public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
 {
     if (empty($hikenameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
@@ -91,3 +92,88 @@ public function showAddHikeForm()
     }
 
 }
+=======
+    public function show(string $id)
+    {
+        try {
+            $user = (new User())->find($id);
+
+            if (empty($id)) {
+                (new PageController())->page_404();
+                die;
+            }
+
+            // 3 - Afficher la page
+            include 'views/layout/header.view.php';
+            include 'views/user.view.php';
+            include 'views/layout/footer.view.php';
+
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+    public function allHikeofUser() {
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+
+            // Fetch user's hikes (replace this with your method to retrieve hikes)
+            $hikes = $this->getHikesOfUser($user['id']); // Adjust based on your data structure
+
+            include 'views/layout/header.view.php';
+            include 'views/myhikes.view.php'; // Pass $hikes to this view
+            include 'views/layout/footer.view.php';
+        } else {
+            // User is not logged in, redirect to login page or handle accordingly
+            http_response_code(302);
+            header('location: /'); // Redirect to the home page or login page
+        }
+    }
+
+    // Method to retrieve user's hikes (replace this with your actual method)
+    private function getHikesOfUser($userId) {
+        // Implement logic to retrieve user's hikes from the database
+        // For example:
+        $query = "SELECT * FROM Hikes WHERE user_id = ?";
+        
+        $stmt = $this->db->query($query, [$userId]); // Use the user's ID as a parameter
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+
+    public function editHike()
+{
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+        
+        $hikeId = $_GET['hike_id']; 
+        $hike = $this->fetchHike($hikeId);
+        
+        include 'views/layout/header.view.php';
+        include 'views/edithike.view.php'; // Create this view file to display the edit profile form
+        include 'views/layout/footer.view.php';
+    } else {
+        // User is not logged in, redirect to login page or handle accordingly
+        http_response_code(302);
+        header('location: /'); // Redirect to the home page or login page
+    }        
+}
+
+private function fetchHike($hikeId) {
+    // Implement logic to retrieve hike information by $hikeId from the database
+    // For example:
+    $query = "SELECT * FROM Hikes WHERE id = ?";
+    
+    $stmt = $this->db->query($query, [$hikeId]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+}
+
+
+
+
+
+
+    
+>>>>>>> Stashed changes

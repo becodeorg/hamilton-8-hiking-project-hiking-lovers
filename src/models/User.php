@@ -6,7 +6,7 @@ namespace Models;
 use PDO;
 
 
-class Profiles extends Database
+class User extends Database
 
 {
     public function findAll(int $limit = 0): array
