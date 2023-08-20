@@ -64,7 +64,6 @@ try {
                 $userController = new UserController();
                 if ($method === "POST")$userController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
                 break;
-<<<<<<< Updated upstream
         case "addhike":
                 $hikeController = new HikeController();
                 if ($method === "GET") $hikeController->showAddHikeForm();
@@ -72,7 +71,6 @@ try {
                 if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'],$_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description']);
                 break;
 
-=======
         case "editHike":
                 $hikeController = new HikeController();
                 if ($method === "GET") {
@@ -80,8 +78,12 @@ try {
                 $hikeController->editHike($hikeId);
                     }
                 break;
+
+        case "updatehike":
+                $hikeController = new HikeController();
+                if ($method === "POST")$hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                break;
                 
->>>>>>> Stashed changes
                 
             
 

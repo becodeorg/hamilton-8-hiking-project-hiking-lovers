@@ -3,10 +3,16 @@ declare(strict_types=1);
 
 namespace Controllers;
 
+error_reporting(E_ALL);
+
+ini_set('display_errors', '1');
+
+
 use Exception;
 use Models\Database;
 use Models\Hike;
 use PDO;
+
 
 class HikeController
 {
@@ -51,48 +57,7 @@ class HikeController
         }
     }
 
-<<<<<<< Updated upstream
-    public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
-{
-    if (empty($hikenameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
-        throw new Exception('Formulaire non complet');
-    }
 
-    $hikename = htmlspecialchars($hikenameInput);
-    $distance = htmlspecialchars($distanceInput);
-    $duration = htmlspecialchars($durationInput);
-    $elevation_gain =htmlspecialchars($elevation_gainInput);
-    $description =htmlspecialchars($descriptionInput);
-
-    $this->db->query(
-        "
-            INSERT INTO Hikes (user_id,name,distance,duration, elevation_gain, description) 
-            VALUES (?, ?, ?, ?, ?,?)
-        ",
-        [$user_id,$hikename, $distance, $duration, $elevation_gain, $description]
-    );
-
-    $_SESSION['user'] = [
-        'id' => $this->db->lastInsertId(),
-        'firstname' => $firstname,
-        'lastname' => $lastname,
-        'nickname' => $nickname,
-        'email' => $email
-    ];
-
-    http_response_code(302);
-    header('location: /');
-}
-
-public function showAddHikeForm()
-    {
-        include 'views/layout/header.view.php';
-        include 'views/addhike.view.php';
-        include 'views/layout/footer.view.php';
-    }
-
-}
-=======
     public function show(string $id)
     {
         try {
@@ -168,6 +133,49 @@ private function fetchHike($hikeId) {
     $stmt = $this->db->query($query, [$hikeId]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+
+public function updateHike(string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
+{
+    if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+        throw new Exception('Formulaire non complet');
+    }
+
+    $hikename = htmlspecialchars($nameInput);
+    $distance = htmlspecialchars($distanceInput);
+    $duration = htmlspecialchars($durationInput);
+    $elevation_gain = htmlspecialchars($elevation_gainInput);
+    $description = htmlspecialchars($descriptionInput);
+
+    // Retrieve user information from session
+    $user = $_SESSION['user'];
+
+try{
+    // Update user profile information in the database
+    $this->db->query(
+        "UPDATE Hikes SET name = ?, distance = ?, duration = ?, elevation_gain = ?, description = ? WHERE id = ?",
+        [$hikename, $distance, $duration, $elevation_gain, $description, $user['hike_id']]
+    );
+}catch (PDOException $e) {
+    // Log the error or display a message
+    echo "Error updating hike: " . $e->getMessage();
+}
+
+
+    // Update session data with new profile information
+    $_SESSION['hike']['name'] = $nameInput;
+    $_SESSION['hike']['distance'] = $distanceInput;
+    $_SESSION['hike']['duration'] = $durationInput;
+    $_SESSION['hike']['elevation_gain'] = $elevation_gainInput;
+    $_SESSION['hike']['description'] = $descriptionInput;
+
+
+    var_dump("Update query executed");         // Debugging output
+    var_dump($_SESSION['hike']);      
+
+    http_response_code(302);
+    header('location: /');
+}
 }
 
 
@@ -176,4 +184,4 @@ private function fetchHike($hikeId) {
 
 
     
->>>>>>> Stashed changes
+

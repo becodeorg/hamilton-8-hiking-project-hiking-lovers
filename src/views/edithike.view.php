@@ -17,8 +17,8 @@
         <input type="text" id="elevation_gain" name="elevation_gain" value="<?= htmlspecialchars($hike['elevation_gain']) ?>" />
     </div>
     <div>
-        <label for="elevation_gain">Elevation Gain</label>
-        <input type="text" id="elevation_gain" name="elevation_gain" value="<?= htmlspecialchars($hike['elevation_gain']) ?>" />
+        <label for="description">Description</label>
+        <input type="text" id="description" name="description" value="<?= htmlspecialchars($hike['description']) ?>" />
     </div>
     
 
