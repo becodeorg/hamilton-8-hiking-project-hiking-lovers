@@ -21,6 +21,7 @@
                     <button><a href="/register">Register</a></button>
                 </div>
                 <?php endif; ?>
+            <a href="/userlist">All Users</a>
             <a href="/hikes-list">All hikes</a>
         </nav>
     </header>

@@ -73,7 +73,7 @@ class Router
                 break;
             case "userlist":
                 $authController = new AuthController();
-                $authController->userlist();
+                $authController->index();
                 break;
                 case "user":
                     $userController = new UserController();
@@ -115,6 +115,10 @@ class Router
                     $hikeController = new HikeController();
                     if ($method === "POST") $hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
                     break;
+                case "tags":
+                    $tagsController = new TagsController();
+                    $tagsController->index();
+
 
 
                 default:

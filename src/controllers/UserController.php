@@ -24,7 +24,7 @@ class UserController
 
             // 3 - Affichage de la liste des produits
             include 'views/layout/header.view.php';
-            include 'views/user.view.php';
+            include 'views/user_list.view.php';
             include 'views/layout/footer.view.php';
         } catch (Exception $e) {
             print_r($e->getMessage());
@@ -114,5 +114,13 @@ class UserController
         http_response_code(302);
         header('location: /?profile_updated=true');
     }
-
+    public function findUsernameById(string $id): string
+    {
+        $stmt = $this->db->query(
+            "SELECT nickname FROM Users WHERE id = :id",
+            ['id' => $id]
+        );
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user['nickname'] ?? 'Unknown User';
+    }
 }

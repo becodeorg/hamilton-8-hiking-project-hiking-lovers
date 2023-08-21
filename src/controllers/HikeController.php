@@ -22,28 +22,23 @@ class HikeController
     {
         $this->db = new Database();
     }
-
-    public function index(): void
+    public function showAll(): void
     {
         try {
-            $hike = (new Hike())->findAll(20);
+            $hikes = (new Hike())->findAll();
 
-            // 3 - Affichage de la liste des produits
             include 'views/layout/header.view.php';
-            include 'views/index.view.php';
+            include 'views/hike_list.view.php';
             include 'views/layout/footer.view.php';
+
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
     }
-
-
-
-
-public function showOneHike(string $id)
+    public function show(string $id): void
     {
         try {
-            $hike = (new Hike())->find($name);
+            $hike = (new Hike())->find($id);
 
             // 3 - Afficher la page
             include 'views/layout/header.view.php';
@@ -96,45 +91,6 @@ public function showOneHike(string $id)
         include 'views/addhike.view.php';
         include 'views/layout/footer.view.php';
     }
-
-
-
-    public function showAll(): void
-    {
-        try {
-            $hikes = (new Hike())->findAll();
-
-            include 'views/layout/header.view.php';
-            include 'views/hike_list.view.php';
-            include 'views/layout/footer.view.php';
-
-        } catch (Exception $e) {
-            print_r($e->getMessage());
-        }
-    }
-
-
-
-    public function show(string $id)
-    {
-        try {
-            $user = (new User())->find($id);
-
-            if (empty($id)) {
-                (new PageController())->page_404();
-                die;
-            }
-
-            // 3 - Afficher la page
-            include 'views/layout/header.view.php';
-            include 'views/user.view.php';
-            include 'views/layout/footer.view.php';
-
-        } catch (Exception $e) {
-            print_r($e->getMessage());
-        }
-    }
-
     public function allHikeofUser() {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
