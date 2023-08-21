@@ -73,9 +73,16 @@ class Router
                     $hikeController = new HikeController();
                     if ($method === "GET") $hikeController->showAll();
                     break;
-                case "hike":
+                case "/hike":
                     $hikeController = new HikeController();
-                    $hikeController->show($_GET['id']);
+                    if (isset($_GET['id'])) {
+                        $hikeController->show($_GET['id']);
+                    } else {
+                        // If id parameter is missing or invalid
+                        include 'views/layout/header.view.php';
+                        echo "Invalid Hike ID"; // Display an error message
+                        include 'views/layout/footer.view.php';
+                    }
                     break;
 
                 case "addhike":
