@@ -11,7 +11,7 @@
         <button type="submit">Login</button>
     </div>
     <div>
-        <p>Not count?</p><button><a href="/register">Inscription</a></button>
+        <p>No account?</p><button><a href="/register">Inscription</a></button>
     </div>
 </form>
 
