@@ -14,7 +14,7 @@ class AuthController
     {
         $this->db = new Database();
     }
-    public function checkIfLoggedIn(): bool
+    public function isLoggedIn(): bool
     {
         return isset($_SESSION['user']); // Vérifie si la clé 'user' existe dans la session
     }
@@ -64,6 +64,12 @@ class AuthController
             throw new Exception('Formulaire non complet');
         }
 
+        // Vérifier si l'utilisateur est déjà connecté
+        if ($this->isLoggedIn()) {
+            header('Location: /user');
+            exit();
+        }
+
         $nickname = htmlspecialchars($nicknameInput);
 
         $stmt = $this->db->query(
@@ -81,24 +87,26 @@ class AuthController
             throw new Exception('Mauvais mot de passe');
         }
 
+        // Enregistrement des informations de l'utilisateur dans la session
         $_SESSION['user'] = [
             'id' => $user['id'],
             'firstname' => $user['firstname'],
             'lastname' => $user['lastname'],
             'nickname' => $user['nickname'],
             'email' => $user['email'],
-            'password' => $user['password']
-
-
         ];
 
-        // Redirect to user profile
+        // Redirection vers le profil de l'utilisateur
         http_response_code(302);
         header('location: /user');
     }
-
     public function showLoginForm()
     {
+        if ($this->isLoggedIn()) {
+            header('Location: /user');
+            exit();
+        }
+
         include 'views/layout/header.view.php';
         include 'views/index.view.php';
         include 'views/layout/footer.view.php';

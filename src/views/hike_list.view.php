@@ -1,4 +1,4 @@
-<p> Salut </p>
+
 <?php if (!empty($hikes)): ?>
     <ul>
         <?php foreach($hikes as $hike): ?>

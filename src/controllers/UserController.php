@@ -62,7 +62,7 @@ class UserController
         } else {
             // User is not logged in, redirect to login page or handle accordingly
             http_response_code(302);
-            header('location: /'); // Redirect to the home page or login page
+            header('location:/'); // Redirect to the home page or login page
         }
     }
 
@@ -114,4 +114,5 @@ class UserController
         http_response_code(302);
         header('location: /?profile_updated=true');
     }
+
 }
