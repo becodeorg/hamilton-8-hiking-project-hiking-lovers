@@ -135,7 +135,7 @@ private function fetchHike($hikeId) {
 }
 
 
-public function updateHike(string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
+public function updateHike(string $hikeId,string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
 {
     if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
         throw new Exception('Formulaire non complet');
@@ -149,12 +149,12 @@ public function updateHike(string $nameInput, string $distanceInput, string $dur
 
     // Retrieve user information from session
     $user = $_SESSION['user'];
-
+    $hikeId = (string) $hikeId;
 try{
     // Update user profile information in the database
     $this->db->query(
         "UPDATE Hikes SET name = ?, distance = ?, duration = ?, elevation_gain = ?, description = ? WHERE id = ?",
-        [$hikename, $distance, $duration, $elevation_gain, $description, $user['hike_id']]
+        [$hikename, $distance, $duration, $elevation_gain, $description, $hikeId]
     );
 }catch (PDOException $e) {
     // Log the error or display a message
@@ -174,8 +174,10 @@ try{
     var_dump($_SESSION['hike']);      
 
     http_response_code(302);
-    header('location: /');
+    header('location: /?hike_updated=true');
 }
+
+
 }
 
 

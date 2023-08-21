@@ -114,4 +114,6 @@ public function updateProfile(string $firstnameInput, string $lastnameInput, str
     http_response_code(302);
     header('location: /?profile_updated=true');
 }
+
+
 }

@@ -19,7 +19,10 @@ if (isset($_GET['profile_updated']) && $_GET['profile_updated'] === 'true') {
 }
 
 if (isset($_GET['addhike']) && $_GET['addhike'] === 'true') {
-    echo '<script>alert("Your hike has been added");</script>';
+    echo '<script>alert("Your hike has been added");</script>';}
+
+if (isset($_GET['hike_updated']) && $_GET['hike_updated'] === 'true') {
+        echo '<script>alert("Your hike is updated!");</script>';
 }
 
 
@@ -81,8 +84,22 @@ try {
 
         case "updatehike":
                 $hikeController = new HikeController();
-                if ($method === "POST")$hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                if ($method === "POST") {
+                    $hikeId = $_POST['hike_id'] ?? null; // Fetch hike_id from the POST data
+                    $hikeController->updateHike($hikeId,$_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                }
+                    break;
+
+
+                
+
+        case "deletehike":
+                $hikeController = new HikeController();
+                if ($method === "GET" && isset($_GET['id'])) {
+                $hikeController->deleteHike($_GET['id']);
+                    }
                 break;
+                
                 
                 
             
