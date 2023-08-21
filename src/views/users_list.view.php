@@ -16,6 +16,7 @@
                     Lastname: <?= $user['lastname']; ?><br>
                     Nickname: <?= $user['nickname']; ?><br>
                     Email: <?= $user['email']; ?>
+                    <button>add friend</button>
                 </li>
             <?php endforeach; ?>
         </ul>

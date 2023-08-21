@@ -1,4 +1,4 @@
-
+<a href="/addhike">add a hike</a>
     <ul>
         <?php foreach($hikes as $hike): ?>
             <li>
