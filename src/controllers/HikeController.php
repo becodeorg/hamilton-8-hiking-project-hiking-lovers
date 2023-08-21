@@ -224,6 +224,46 @@ try{
     header('location: /?hike_updated=true');
 }
 
+public function showAddHikeForm()
+    {
+        include 'views/layout/header.view.php';
+        include 'views/addhike.view.php';
+        include 'views/layout/footer.view.php';
+    }
+
+    public function addhike(string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput, int $user_idInput)
+    {
+        if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+            throw new Exception('Formulaire non complet');
+        }
+    
+        $hikename = htmlspecialchars($nameInput);
+        $distance = htmlspecialchars($distanceInput);
+        $duration = htmlspecialchars($durationInput);
+        $elevation_gain = htmlspecialchars($elevation_gainInput);
+        $description = htmlspecialchars($descriptionInput);
+
+        $this->db->query(
+            "
+                INSERT INTO Hikes (name,distance,duration, elevation_gain, description,user_id) 
+                VALUES (?, ?, ?, ?, ?,?)
+            ",
+            [$hikename, $distance, $duration, $elevation_gain, $description, $user_idInput]
+        );
+
+        $_SESSION['hike'] = [
+            'id' => $this->db->lastInsertId(),
+            'name' => $hikename,
+            'distance' => $distance,
+            'duration' => $duration,
+            'elevation_gain' => $elevation_gain,
+            'description' => $description
+
+        ];
+
+        http_response_code(302);
+        header('location: /user');
+    }
 
 }
 

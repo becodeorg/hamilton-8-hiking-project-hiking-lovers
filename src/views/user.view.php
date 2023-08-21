@@ -20,3 +20,7 @@
 <div class="buttons">
     <button><a href="/myhikes">View my hikes</a></button>
 </div>
+
+<div class="buttons">
+    <button><a href="/addhike">Add a new hike</a></button>
+</div>

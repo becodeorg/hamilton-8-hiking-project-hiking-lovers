@@ -115,32 +115,6 @@ public function updateProfile(string $firstnameInput, string $lastnameInput, str
     header('location: /?profile_updated=true');
 }
 
-public function deleteHike(string $hikeId)
-{
-    // Check if the user is logged in
-    if (!isset($_SESSION['user'])) {
-        // User is not logged in, handle accordingly
-        http_response_code(302);
-        header('location: /');
-        return;
-    }
-
-    // Retrieve user information from session
-    $user = $_SESSION['user'];
-
-    // Delete the hike
-    try {
-        $this->db->query("DELETE FROM Hikes WHERE id = ? AND user_id = ?", [$hikeId, $user['id']]);
-        // Optionally, you can add a success message here
-    } catch (PDOException $e) {
-        // Handle the error, log, or display a message
-        echo "Error deleting hike: " . $e->getMessage();
-    }
-
-    // Redirect back to the user's hike list or another appropriate page
-    http_response_code(302);
-    header('location: /myhikes'); // Adjust the URL as needed
-}
 
 
 public function adminProfile()
