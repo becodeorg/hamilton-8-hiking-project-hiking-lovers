@@ -18,6 +18,3 @@ $url_path = trim(
 $method = $_SERVER['REQUEST_METHOD']; // GET -- POST
 
 $router->route($url_path, $method);
-
-
-

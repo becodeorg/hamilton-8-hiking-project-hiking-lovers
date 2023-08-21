@@ -14,6 +14,9 @@
     <button><a href="/editprofile">Edit my profile</a></button>
 </div>
 
+
+
+
 <div class="buttons">
-    <button><a href="/addhike">Add a new hike</a></button>
+    <button><a href="/myhikes">View my hikes</a></button>
 </div>

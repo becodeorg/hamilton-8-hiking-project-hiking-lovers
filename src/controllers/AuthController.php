@@ -109,6 +109,7 @@ class AuthController
 
 
 
+<<<<<<< HEAD
     public function showUserInfo()
     {
         if (isset($_SESSION['user'])) {
@@ -172,6 +173,9 @@ class AuthController
         http_response_code(302);
         header('location: /?profile_updated=true');
     }
+=======
+    
+>>>>>>> Özlem
 
 
 

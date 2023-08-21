@@ -14,6 +14,7 @@ return array(
     'Controllers\\HikeController' => $baseDir . '/controllers/HikeController.php',
     'Controllers\\PageController' => $baseDir . '/controllers/PageController.php',
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     'Controllers\\TagsController' => $baseDir . '/controllers/TagsController.php',
 >>>>>>> ced
@@ -26,4 +27,10 @@ return array(
     'Models\\Tags' => $baseDir . '/models/Tags.php',
     'core\\Router' => $baseDir . '/core/Router.php',
 >>>>>>> ced
+=======
+    'Controllers\\UserController' => $baseDir . '/controllers/UserController.php',
+    'Models\\Database' => $baseDir . '/models/Database.php',
+    'Models\\Hikes' => $baseDir . '/models/Hike.php',
+    'Models\\User' => $baseDir . '/models/User.php',
+>>>>>>> Özlem
 );
