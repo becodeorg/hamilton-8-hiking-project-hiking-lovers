@@ -23,7 +23,6 @@ class HikeController
         $this->db = new Database();
     }
 
-
     public function index(): void
     {
         try {
@@ -41,7 +40,7 @@ class HikeController
 
 
 
-    public function showOneHike(string $id)
+public function showOneHike(string $id)
     {
         try {
             $hike = (new Hike())->find($name);

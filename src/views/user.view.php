@@ -1,7 +1,7 @@
 
-    <h2>My profile</h2>
+<h2>My profile</h2>
 
-    <div class=hike_container>
+<div class=hike_container>
 
     <p>First Name: <?= isset($user['firstname']) ? htmlspecialchars($user['firstname']) : '' ?></p>
     <p>Last Name: <?= isset($user['lastname']) ? htmlspecialchars($user['lastname']) : '' ?></p>

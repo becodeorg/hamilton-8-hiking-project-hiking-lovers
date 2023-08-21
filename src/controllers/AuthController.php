@@ -15,9 +15,14 @@ class AuthController
         $this->db = new Database();
     }
 
+    public function isLoggedIn(): bool
+    {
+        return isset($_SESSION['user']); // Vérifie si la clé 'user' existe dans la session
+    }
+
     public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
-        if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
+        if (empty($firstnameInput) || empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
@@ -60,6 +65,12 @@ class AuthController
             throw new Exception('Formulaire non complet');
         }
 
+        // Vérifier si l'utilisateur est déjà connecté
+        if ($this->isLoggedIn()) {
+            header('Location: /user');
+            exit();
+        }
+
         $nickname = htmlspecialchars($nicknameInput);
 
         $stmt = $this->db->query(
@@ -77,24 +88,27 @@ class AuthController
             throw new Exception('Mauvais mot de passe');
         }
 
+        // Enregistrement des informations de l'utilisateur dans la session
         $_SESSION['user'] = [
             'id' => $user['id'],
             'firstname' => $user['firstname'],
             'lastname' => $user['lastname'],
             'nickname' => $user['nickname'],
             'email' => $user['email'],
-            'password' => $user['password']
-
-
         ];
 
-        // Redirect to user profile
+        // Redirection vers le profil de l'utilisateur
         http_response_code(302);
         header('location: /user');
     }
 
     public function showLoginForm()
     {
+        if ($this->isLoggedIn()) {
+            header('Location: /user');
+            exit();
+        }
+
         include 'views/layout/header.view.php';
         include 'views/index.view.php';
         include 'views/layout/footer.view.php';
@@ -107,21 +121,17 @@ class AuthController
         header('location: /');
     }
 
-
-
-
     public function showUserInfo()
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
 
             include 'views/layout/header.view.php';
-            include 'views/user.view.php'; // Create this view file to display user information
+            include 'views/user.view.php';
             include 'views/layout/footer.view.php';
         } else {
-            // User is not logged in, redirect to login page or handle accordingly
             http_response_code(302);
-            header('location: /'); // Redirect to the home page or login page
+            header('location: /');
         }
     }
 
@@ -131,19 +141,17 @@ class AuthController
             $user = $_SESSION['user'];
 
             include 'views/layout/header.view.php';
-            include 'views/editProfile.view.php'; // Create this view file to display the edit profile form
+            include 'views/editProfile.view.php';
             include 'views/layout/footer.view.php';
         } else {
-            // User is not logged in, redirect to login page or handle accordingly
             http_response_code(302);
-            header('location: /'); // Redirect to the home page or login page
+            header('location: /');
         }
     }
 
-
     public function updateProfile(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
-        if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
+        if (empty($firstnameInput) || empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
 
@@ -173,16 +181,7 @@ class AuthController
         http_response_code(302);
         header('location: /?profile_updated=true');
     }
-
-
-
-
-
-
-
-
-
-
-
 }
+
+
 
