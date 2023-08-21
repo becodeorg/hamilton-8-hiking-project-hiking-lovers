@@ -84,14 +84,12 @@ class Router
                         include 'views/layout/footer.view.php';
                     }
                     break;
-
                 case "addhike":
                     $hikeController = new HikeController();
                     if ($method === "GET") $hikeController->showAddHikeForm();
 
                     if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'], $_POST['hikename'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
                     break;
-
                 case "editHike":
                     $hikeController = new HikeController();
                     if ($method === "GET") {
@@ -99,11 +97,15 @@ class Router
                         $hikeController->editHike($hikeId);
                     }
                     break;
-
                 case "updatehike":
                     $hikeController = new HikeController();
                     if ($method === "POST") $hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
                     break;
+                case "tags":
+                    $tagscontroller = new TagsController();
+                    $tagscontroller->show();
+                    break;
+
 
 
                 default:

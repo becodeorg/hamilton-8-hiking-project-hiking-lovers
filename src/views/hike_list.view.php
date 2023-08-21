@@ -1,5 +1,6 @@
 
 <?php if (!empty($hikes)): ?>
+    <a href="/addhike">Ajouter a hike</a>
     <ul>
         <?php foreach($hikes as $hike): ?>
             <li>
