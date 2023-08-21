@@ -50,6 +50,41 @@ class Router
                 $authController = new AuthController();
                 $authController->userlist();
                 break;
+            case "user":
+                $userController = new UserController();
+                if ($method === "GET") $userController->showUserInfo();
+                break;
+            case "editprofile":
+                $userController = new UserController();
+                if ($method === "GET") $userController->editProfile();
+                break;
+            case "updateprofile":
+                $userController = new UserController();
+                if ($method === "POST") $userController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
+                break;
+            case "addhike":
+                $hikeController = new HikeController();
+                if ($method === "GET") $hikeController->showAddHikeForm();
+
+                if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'], $_POST['hikename'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                break;
+
+            case "editHike":
+                $hikeController = new HikeController();
+                if ($method === "GET") {
+                    $hikeId = $_GET['hike_id'] ?? null;
+                    $hikeController->editHike($hikeId);
+                }
+                break;
+
+            case "updatehike":
+                $hikeController = new HikeController();
+                if ($method === "POST") $hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                break;
+            case "tags":
+                $tagsController = new TagsController();
+                $tagsController->index();
+
 
 
             default:

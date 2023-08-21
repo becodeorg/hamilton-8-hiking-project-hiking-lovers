@@ -1,0 +1,49 @@
+
+
+body {
+    background-color:yellow;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+}
+
+
+.greeting {
+    float:none;
+    display:flex;
+   justify-content: center;
+}
+.float-right {
+    float:right;
+}
+
+.register button {
+    background: indigo;
+    border: 0;
+    color: white;
+    padding: 0;
+    border-radius: 20px;
+    transition: 0.4s ease;
+}
