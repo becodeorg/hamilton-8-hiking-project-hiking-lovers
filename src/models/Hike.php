@@ -5,11 +5,11 @@ namespace Models;
 
 use PDO;
 
-
 class Hike extends Database
 {
     public function findAll(int $limit = 0): array
     {
+
             $sql = "SELECT * FROM Hikes LIMIT 20";
 
         $stmt = $this->query($sql);
