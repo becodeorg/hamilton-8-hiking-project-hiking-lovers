@@ -6,16 +6,13 @@ namespace Models;
 use PDO;
 
 
-class Hikes extends Database
+class Hike extends Database
 
 {
     public function findAll(int $limit = 0): array
     {
-        if ($limit === 0) {
-            $sql = "SELECT * FROM Hikes";
-        } else {
-            $sql = "SELECT * FROM Hikes LIMIT " . $limit;
-        }
+            $sql = "SELECT * FROM Hikes LIMIT 20";
+
         $stmt = $this->query($sql);
         $hikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

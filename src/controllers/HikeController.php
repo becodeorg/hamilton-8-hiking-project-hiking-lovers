@@ -30,8 +30,21 @@ class HikeController
 
             // 3 - Affichage de la liste des produits
             include 'views/layout/header.view.php';
-            include 'views/index.view.php';
+            include 'views/hike_list.view.php';
             include 'views/layout/footer.view.php';
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+    public function showAll(): void
+    {
+        try {
+            $hikes = (new Hike())->findAll();
+
+            include 'views/layout/header.view.php';
+            include 'views/hike_list.view.php';
+            include 'views/layout/footer.view.php';
+
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
@@ -133,6 +146,40 @@ private function fetchHike($hikeId) {
     $stmt = $this->db->query($query, [$hikeId]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+public function deleteHike(string $hikeId)
+{
+    // Check if the user is logged in
+    if (!isset($_SESSION['user'])) {
+        // User is not logged in, handle accordingly
+        http_response_code(302);
+        header('location: /');
+        return;
+    }
+
+    // Remove associations first
+    try {
+        $this->db->query("UPDATE Users SET hike_id = NULL WHERE hike_id = ?", [$hikeId]);
+    } catch (PDOException $e) {
+        // Handle the error, log, or display a message
+        echo "Error removing associations: " . $e->getMessage();
+        return;
+    }
+
+    // Delete the hike
+    try {
+        $this->db->query("DELETE FROM Hikes WHERE id = ?", [$hikeId]);
+        // Optionally, you can add a success message here
+    } catch (PDOException $e) {
+        // Handle the error, log, or display a message
+        echo "Error deleting hike: " . $e->getMessage();
+    }
+
+    // Redirect back to the user's hike list or another appropriate page
+    http_response_code(302);
+    header('location: /myhikes'); // Adjust the URL as needed
+}
+
 
 
 public function updateHike(string $hikeId,string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)

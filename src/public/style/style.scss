@@ -19,29 +19,26 @@ body {
     color: #fefae0;
     justify-content: space-around;
     align-items: center;
-    button{
+    button {
       background-color: #bc6c25;
       border-radius: 1rem;
     }
 
-      a {
-        padding: 14px 16px;
-        font-size: 17px;
-        color: white;
-        text-decoration: none;
-
+    a {
+      padding: 14px 16px;
+      font-size: 17px;
+      color: white;
+      text-decoration: none;
     }
 
-      display: flex;
+    display: flex;
 
-        a {
-          padding: 14px 16px;
-          font-size: 17px;
-          display: block;
-          color: #fefae0;
-        }
-
-
+    a {
+      padding: 14px 16px;
+      font-size: 17px;
+      display: block;
+      color: #fefae0;
+    }
   }
   h2 {
     text-align: center;
@@ -71,10 +68,10 @@ body {
       width: 5rem;
     }
   }
-  footer{
+  footer {
     background-color: #283618;
     color: #fefae0;
-    a{
+    a {
       text-decoration: none;
       color: #fefae0;
     }

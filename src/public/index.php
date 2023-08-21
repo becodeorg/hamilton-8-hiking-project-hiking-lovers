@@ -89,20 +89,25 @@ try {
                     $hikeController->updateHike($hikeId,$_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
                 }
                     break;
-
-
-                
-
         case "deletehike":
                 $hikeController = new HikeController();
                 if ($method === "GET" && isset($_GET['id'])) {
                 $hikeController->deleteHike($_GET['id']);
                     }
                 break;
-                
-                
-                
-            
+        case "hike-list":
+                $hikeController = new HikeController();
+                $hikeController->showAll();
+                break;
+
+        case "admin":
+                $userController = new UserController();
+                $userController->adminProfile();
+                break;
+        case "user_list":
+                    $userController = new UserController();
+                    $userController->showAllUsers();
+                    break;
 
         default:
             $pageController = new PageController();
