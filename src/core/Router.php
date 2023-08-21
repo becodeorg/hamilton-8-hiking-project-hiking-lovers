@@ -39,7 +39,10 @@ class Router
                 $authController = new AuthController();
                 $authController->userlist();
                 break;
-
+            case "/user":
+                $usercontroller = new UserController();
+                $usercontroller->show();
+                break;
 
             default:
                 $pageController = new PageController();

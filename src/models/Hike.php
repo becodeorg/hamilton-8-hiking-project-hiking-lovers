@@ -9,11 +9,8 @@ class Hike extends Database
 {
     public function findAll(int $limit = 0): array
     {
-<<<<<<< HEAD
-        $sql = "SELECT * FROM Hikes LIMIT 20";
-=======
+
             $sql = "SELECT * FROM Hikes LIMIT 20";
->>>>>>> marius
 
         $stmt = $this->query($sql);
         $hikes = $stmt->fetchAll(PDO::FETCH_ASSOC);
