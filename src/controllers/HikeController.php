@@ -17,19 +17,6 @@ class HikeController
         $this->db = new Database();
     }
 
-    public function index(): void
-    {
-        try {
-            $hike = (new Hike())->findAll(20);
-
-
-            include 'views/layout/header.view.php';
-            include 'views/index.view.php';
-            include 'views/layout/footer.view.php';
-        } catch (Exception $e) {
-            print_r($e->getMessage());
-        }
-    }
 
     public function show(string $id): void
     {

@@ -17,11 +17,11 @@ class Hike extends Database
         return $hikes;
     }
 
-    public function find(string $id): array|false
+    public function find(string $id): array|bool
     {
         $stmt = $this->query(
-            "SELECT * FROM Hikes WHERE id = ?",
-            [$id]
+            "SELECT * FROM Hikes WHERE id = :id",
+            [':id'=>$id]
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
