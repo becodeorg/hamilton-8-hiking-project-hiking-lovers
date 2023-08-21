@@ -43,7 +43,7 @@ class Router
                         }
                     } else {
                         // Utilisateur connecté : rediriger vers la page /user
-                        header("Location: /user");
+                        header("Location: /profil");
                         exit();
                     }
                     break;
@@ -56,72 +56,80 @@ class Router
                     if ($method === "GET") $authController->showRegistrationForm();
                     if ($method === "POST") $authController->register($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
                     break;
-            case "/hikes-list":
-                $hikeController = new HikeController();
-                $hikeController->showAll();
-                break;
-            case "/hike":
-                $hikeController = new HikeController();
-                if (isset($_GET['id'])) {
-                    $hikeController->show($_GET['id']);
-                } else {
-                    // If id parameter is missing or invalid
-                    include 'views/layout/header.view.php';
-                    echo "Invalid Hike ID"; // Display an error message
-                    include 'views/layout/footer.view.php';
-                }
-                break;
             case "userlist":
-                $authController = new AuthController();
-                $authController->index();
-                break;
-                case "user":
+                $userController = new UserController();
+                $userController->index();
+                    break;
+            case "search-user":
                     $userController = new UserController();
-                    if ($method === "GET") $userController->showUserInfo();
-                    break;
-                case "editprofile":
-                    $userController = new UserController();
-                    if ($method === "GET") $userController->editProfile();
-                    break;
-                case "updateprofile":
-                    $userController = new UserController();
-                    if ($method === "POST") $userController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
-                    break;
-                case "hikes-list":
-                    $hikeController = new HikeController();
-                    if ($method === "GET") $hikeController->showAll();
-                    break;
-                case "hike":
-                    $hikeController = new HikeController();
-                    $hikeController->show($_GET['id']);
-                    break;
-
-                case "addhike":
-                    $hikeController = new HikeController();
-                    if ($method === "GET") $hikeController->showAddHikeForm();
-
-                    if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'], $_POST['hikename'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
-                    break;
-
-                case "editHike":
-                    $hikeController = new HikeController();
                     if ($method === "GET") {
-                        $hikeId = $_GET['hike_id'] ?? null;
-                        $hikeController->editHike($hikeId);
+                        $searchTerm = $_GET['search'] ?? '';
+                        $userController->searchUserAndRedirect($searchTerm);
                     }
                     break;
+                case "user":
+                    $userController = new UserController();
+                    if ($method === "GET") {
+                        $userId = $_GET['id'] ?? null;
+                        $searchTerm = $_GET['search'] ?? null;
 
-                case "updatehike":
+                        if ($userId) {
+                            $userController->showUser($userId);
+                        } elseif ($searchTerm) {
+                            $userController->searchUserAndRedirect($searchTerm);
+                        } else {
+                            // Handle the case when neither 'id' nor 'search' is provided
+                            // You might want to display an error or redirect to a default page
+                        }
+                    }
+                    break;
+            case "profil":
+                $userController = new UserController();
+                if ($method === "GET") $userController->showUserInfo();
+                break;
+            case "editprofile":
+                $userController = new UserController();
+                if ($method === "GET") $userController->editProfile();
+                break;
+            case "updateprofile":
+                $userController = new UserController();
+                if ($method === "POST") $userController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);
+                break;
+            case "hikes-list":
+                $hikeController = new HikeController();
+                if ($method === "GET") $hikeController->showAll();
+                break;
+            case "hike":
+                $hikeController = new HikeController();
+                $hikeController->show($_GET['id']);
+                break;
+
+            case "addhike":
+                $hikeController = new HikeController();
+                if ($method === "GET") $hikeController->showAddHikeForm();
+
+                if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'], $_POST['hikename'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                break;
+
+            case "editHike":
+                $hikeController = new HikeController();
+                if ($method === "GET") {
+                $hikeId = $_GET['hike_id'] ?? null;
+                $hikeController->editHike($hikeId);
+                    }
+                break;
+
+            case "updatehike":
                     $hikeController = new HikeController();
                     if ($method === "POST") $hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
                     break;
-                case "tags":
+            case "tags":
                     $tagsController = new TagsController();
                     $tagsController->index();
 
 
 
-                default:
+            default:
                     $pageController = new PageController();
                     $pageController->page_404();
             }

@@ -91,22 +91,6 @@ class HikeController
         include 'views/addhike.view.php';
         include 'views/layout/footer.view.php';
     }
-    public function allHikeofUser() {
-        if (isset($_SESSION['user'])) {
-            $user = $_SESSION['user'];
-
-            // Fetch user's hikes (replace this with your method to retrieve hikes)
-            $hikes = $this->getHikesOfUser($user['id']); // Adjust based on your data structure
-
-            include 'views/layout/header.view.php';
-            include 'views/myhikes.view.php'; // Pass $hikes to this view
-            include 'views/layout/footer.view.php';
-        } else {
-            // User is not logged in, redirect to login page or handle accordingly
-            http_response_code(302);
-            header('location: /'); // Redirect to the home page or login page
-        }
-    }
 
     // Method to retrieve user's hikes (replace this with your actual method)
     private function getHikesOfUser($userId) {

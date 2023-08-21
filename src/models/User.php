@@ -3,12 +3,15 @@ declare(strict_types=1);
 
 namespace Models;
 
+use Controllers\UserController;
+use Models\Database;
 use PDO;
 
 
 class User extends Database
-
 {
+
+
     public function findAll(int $limit = 0): array
     {
         if ($limit === 0) {
@@ -21,14 +24,16 @@ class User extends Database
 
         return $users;
     }
-
-    public function find(string $id): array|false
+    public function searchUsersByNameOrNickname($searchTerm)
     {
-        $stmt = $this->query(
-            "SELECT * FROM Users WHERE id = ?",
-            [$id]
-        );
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        $sql = "SELECT * FROM Users WHERE firstname LIKE :search OR nickname LIKE :search";
+        $stmt = $this->query($sql, ['search' => '%' . $searchTerm . '%']);
+        $searchedUsers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $searchedUsers;
     }
 
+
 }
+
+

@@ -1,5 +1,4 @@
 
-<?php if (!empty($hikes)): ?>
     <ul>
         <?php foreach($hikes as $hike): ?>
             <li>
@@ -12,4 +11,4 @@
             </li>
         <?php endforeach; ?>
     </ul>
-<?php endif; ?>
+

@@ -64,10 +64,9 @@ class AuthController
         if (empty($nicknameInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
         }
-
         // Vérifier si l'utilisateur est déjà connecté
         if ($this->isLoggedIn()) {
-            header('Location: /user');
+            header('Location:/profil');
             exit();
         }
 
@@ -99,13 +98,13 @@ class AuthController
 
         // Redirection vers le profil de l'utilisateur
         http_response_code(302);
-        header('location: /user');
+        header('location: /profil');
     }
 
     public function showLoginForm()
     {
         if ($this->isLoggedIn()) {
-            header('Location: /user');
+            header('Location: /profil');
             exit();
         }
 

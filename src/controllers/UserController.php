@@ -17,39 +17,53 @@ class UserController
         $this->db = new Database();
     }
 
-    public function index ()
+    public function index()
     {
         try {
-            $user = (new User())->findAll(20);
+            $searchQuery = $_GET['search'] ?? ''; // Get the search query from the URL parameter
 
-            // 3 - Affichage de la liste des produits
-            include 'views/layout/header.view.php';
-            include 'views/user.view.php';
-            include 'views/layout/footer.view.php';
-        } catch (Exception $e) {
-            print_r($e->getMessage());
-        }
-    }
-
-    public function show(string $id)
-    {
-        try {
-            $user = (new User())->find($id);
-
-            if (empty($id)) {
-                (new PageController())->page_404();
-                die;
+            if (!empty($searchQuery)) {
+                // Search for users by first name or nickname
+                $users = (new User())->searchUsers($searchQuery);
+            } else {
+                // Retrieve all users
+                $users = (new User())->findAll(20);
             }
 
-            // 3 - Afficher la page
             include 'views/layout/header.view.php';
-            include 'views/user.view.php';
+            include 'views/users_list.view.php';
             include 'views/layout/footer.view.php';
-
         } catch (Exception $e) {
             print_r($e->getMessage());
         }
     }
+    public function searchUserAndRedirect($searchTerm) {
+        $userModel = new User();
+        $searchedUsers = $userModel->searchUsersByNameOrNickname($searchTerm);
+
+        if (count($searchedUsers) === 1) {
+            $userId = $searchedUsers[0]['firstname'];
+            header("Location: /user?id=$userId");
+            exit();
+        } elseif (count($searchedUsers) > 1) {
+            echo '<script>alert("Multiple users found. Please be more specific.");</script>';
+        } else {
+            echo '<script>alert("User not found.");</script>';
+        }
+    }
+    public function showUser($userId) {
+        $userModel = new User();
+        $user = $userModel->findUserById($userId); // Utilisation correcte de la méthode
+
+        if ($user) {
+            // Chargez la vue user.view.php avec les données de l'utilisateur
+            require_once "views/user.view.php";
+        } else {
+            // Gérer le cas où l'utilisateur n'est pas trouvé
+            echo '<script>alert("User not found.");</script>';
+        }
+    }
+
 
     public function showUserInfo()
     {
@@ -57,7 +71,7 @@ class UserController
             $user = $_SESSION['user'];
 
             include 'views/layout/header.view.php';
-            include 'views/user.view.php'; // Create this view file to display user information
+            include 'views/profil.view.php'; // Create this view file to display user information
             include 'views/layout/footer.view.php';
         } else {
             // User is not logged in, redirect to login page or handle accordingly
@@ -65,7 +79,15 @@ class UserController
             header('location:/'); // Redirect to the home page or login page
         }
     }
-
+    public function findUsernameById(string $id): string
+    {
+        $stmt = $this->db->query(
+            "SELECT nickname FROM Users WHERE id = :id",
+            ['id' => $id]
+        );
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user['nickname'] ?? 'Unknown User';
+    }
     public function editProfile()
     {
         if (isset($_SESSION['user'])) {
