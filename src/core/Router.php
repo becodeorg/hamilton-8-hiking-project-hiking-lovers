@@ -1,26 +1,36 @@
 <?php
 
-
 namespace core;
 
 use Controllers\AuthController;
+use Controllers\TagsController;
 use Controllers\UserController;
 use Controllers\PageController;
 use Controllers\HikeController;
-
 
 class Router
 {
     public function route(string $url_path, string $method): void
     {
-
+        // Vérifier si l'utilisateur est connecté
+        $authController = new AuthController();
+        $isLoggedIn = $authController->checkIfLoggedIn();
 
         switch ($url_path) {
             case "":
             case "/":
-                $authController = new AuthController();
-                if ($method === "GET") $authController->showLoginForm();
-                if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
+                if ($isLoggedIn) {
+                    header("Location: /user"); // Redirige vers la page de profil
+                    exit();
+                } else {
+                    $authController = new AuthController();
+                    if ($method === "GET") $authController->showLoginForm();
+                    if ($method === "POST") $authController->login($_POST['nickname'], $_POST['password']);
+                }
+                break;
+            case "/user":
+                $usercontroller = new UserController();
+                $usercontroller->show($_GET['id']);
                 break;
             case "/hikes-list":
                 $hikeController = new HikeController();
@@ -39,11 +49,11 @@ class Router
                 $authController = new AuthController();
                 $authController->userlist();
                 break;
-            case "/user":
-                $usercontroller = new UserController();
-                $usercontroller->show();
+           
+            case "/tags":
+                $tagsController = new TagsController();
+                $tagsController->index();
                 break;
-
             default:
                 $pageController = new PageController();
                 $pageController->page_404();

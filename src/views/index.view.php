@@ -8,9 +8,6 @@
         <input type="password" id="password" name="password"/>
     </div>
 
-    <button type="submit">Login</button>
-</form>
-
     <div>
         <button type="submit">Login</button>
     </div>

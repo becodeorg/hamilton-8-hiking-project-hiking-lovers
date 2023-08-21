@@ -14,6 +14,10 @@ class AuthController
     {
         $this->db = new Database();
     }
+    public function checkIfLoggedIn(): bool
+    {
+        return isset($_SESSION['user']); // Vérifie si la clé 'user' existe dans la session
+    }
 
     public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
@@ -107,20 +111,17 @@ class AuthController
         header('location: /');
     }
 
-
-
     public function showUserInfo()
     {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
 
             include 'views/layout/header.view.php';
-            include 'views/user.view.php'; // Create this view file to display user information
+            include 'views/user.view.php';
             include 'views/layout/footer.view.php';
         } else {
-            // User is not logged in, redirect to login page or handle accordingly
             http_response_code(302);
-            header('location: /'); // Redirect to the home page or login page
+            header('location: /');
         }
     }
 
@@ -130,15 +131,13 @@ class AuthController
             $user = $_SESSION['user'];
 
             include 'views/layout/header.view.php';
-            include 'views/editProfile.view.php'; // Create this view file to display the edit profile form
+            include 'views/editProfile.view.php';
             include 'views/layout/footer.view.php';
         } else {
-            // User is not logged in, redirect to login page or handle accordingly
             http_response_code(302);
-            header('location: /'); // Redirect to the home page or login page
+            header('location: /');
         }
     }
-
 
     public function updateProfile(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
     {
@@ -172,15 +171,6 @@ class AuthController
         http_response_code(302);
         header('location: /?profile_updated=true');
     }
-
-
-
-
-
-
-
-
-
-
 }
+
 
