@@ -18,7 +18,7 @@
         <nav>
             <a href="/"><strong>Hiking Lovers</strong></a>
                 <?php if (!empty($_SESSION['user'])): ?>
-                    <a href="/profil">Bonjour <?= $_SESSION['user']['nickname'] ?></a>
+                    Bonjour <?= $_SESSION['user']['nickname'] ?>
 
                     <a href="/logout">Logout</a>
                 <?php else: ?>
