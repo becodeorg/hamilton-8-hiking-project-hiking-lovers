@@ -20,6 +20,11 @@
         <label for="description">Description</label>
         <input type="text" id="description" name="description" value="<?= htmlspecialchars($hike['description']) ?>" />
     </div>
+
+    <div>
+        <label for="id"></label>
+        <input type="hidden" id="hike_id" name="hike_id" value="<?= htmlspecialchars($hike['id']) ?>" />
+    </div>
     
 
     <button type="submit">Update Hike</button>
