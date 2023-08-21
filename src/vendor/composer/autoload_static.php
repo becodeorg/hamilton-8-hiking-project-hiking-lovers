@@ -14,26 +14,13 @@ class ComposerStaticInit791e62f6e9f02ffc60428ad5fe03576c
         'Controllers\\AuthController' => __DIR__ . '/../..' . '/controllers/AuthController.php',
         'Controllers\\HikeController' => __DIR__ . '/../..' . '/controllers/HikeController.php',
         'Controllers\\PageController' => __DIR__ . '/../..' . '/controllers/PageController.php',
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         'Controllers\\TagsController' => __DIR__ . '/../..' . '/controllers/TagsController.php',
->>>>>>> ced
         'Controllers\\UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
         'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
         'Models\\Hike' => __DIR__ . '/../..' . '/models/Hike.php',
-        'Models\\Profiles' => __DIR__ . '/../..' . '/models/User.php',
-<<<<<<< HEAD
-=======
         'Models\\Tags' => __DIR__ . '/../..' . '/models/Tags.php',
-        'core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
->>>>>>> ced
-=======
-        'Controllers\\UserController' => __DIR__ . '/../..' . '/controllers/UserController.php',
-        'Models\\Database' => __DIR__ . '/../..' . '/models/Database.php',
-        'Models\\Hikes' => __DIR__ . '/../..' . '/models/Hike.php',
         'Models\\User' => __DIR__ . '/../..' . '/models/User.php',
->>>>>>> Özlem
+        'core\\Router' => __DIR__ . '/../..' . '/core/Router.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

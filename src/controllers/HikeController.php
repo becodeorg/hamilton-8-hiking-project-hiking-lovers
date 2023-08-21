@@ -37,12 +37,8 @@ class HikeController
         }
     }
 
-<<<<<<< HEAD
 
-    public function show(string $name):void
-=======
     public function showOneHike(string $id)
->>>>>>> Özlem
     {
         try {
             $hike = (new Hike())->find($name);
@@ -58,7 +54,7 @@ class HikeController
     }
 
 
-<<<<<<< HEAD
+
 
     public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
     {
@@ -115,8 +111,8 @@ class HikeController
         }
     }
 
-}
-=======
+
+
     public function show(string $id)
     {
         try {
@@ -244,4 +240,4 @@ try{
 
     
 
->>>>>>> Özlem
+
