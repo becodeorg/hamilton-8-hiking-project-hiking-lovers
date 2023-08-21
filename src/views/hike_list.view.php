@@ -1,9 +1,9 @@
-<p> Salut </p>
+
 <?php if (!empty($hikes)): ?>
     <ul>
         <?php foreach($hikes as $hike): ?>
             <li>
-                <a href="/hike?name=<?= $hike['name'] ?>">
+                <a href="/hike?id=<?= $hike['id'] ?>">
                     <?= $hike['name'] ?><br>
                     Distance: <?= $hike['distance'] ?><br>
                     Duration: <?= $hike['duration'] ?><br>

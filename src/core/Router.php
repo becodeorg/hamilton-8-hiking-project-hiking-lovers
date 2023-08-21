@@ -9,12 +9,11 @@ use Controllers\PageController;
 use Controllers\HikeController;
 
 
+
 class Router
 {
     public function route(string $url_path, string $method): void
     {
-
-
         switch ($url_path) {
             case "":
             case "/":
@@ -25,6 +24,17 @@ class Router
             case "/hikes-list":
                 $hikeController = new HikeController();
                 $hikeController->showAll();
+                break;
+            case "/hike":
+                $hikeController = new HikeController();
+                if (isset($_GET['id'])) {
+                    $hikeController->show($_GET['id']);
+                } else {
+                    // If id parameter is missing or invalid
+                    include 'views/layout/header.view.php';
+                    echo "Invalid Hike ID"; // Display an error message
+                    include 'views/layout/footer.view.php';
+                }
                 break;
             case "/logout":
                 $authController = new AuthController();

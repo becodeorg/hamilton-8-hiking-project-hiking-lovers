@@ -23,6 +23,7 @@ class HikeController
         $this->db = new Database();
     }
 
+
     public function index(): void
     {
         try {
@@ -36,6 +37,8 @@ class HikeController
             print_r($e->getMessage());
         }
     }
+
+
 
 
     public function showOneHike(string $id)
