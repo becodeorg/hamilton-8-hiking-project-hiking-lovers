@@ -97,7 +97,7 @@ try {
                 break;
         case "hike-list":
                 $hikeController = new HikeController();
-                $hikeController->showAll();
+                $hikeController->showAllHikeAdmin();
                 break;
 
         case "admin":
@@ -106,7 +106,7 @@ try {
                 break;
         case "user_list":
                     $userController = new UserController();
-                    $userController->showAllUsers();
+                    $userController->showAllUsersAdmin();
                     break;
 
         default:

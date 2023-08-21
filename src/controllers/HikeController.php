@@ -36,13 +36,13 @@ class HikeController
             print_r($e->getMessage());
         }
     }
-    public function showAll(): void
+    public function showAllHikeAdmin(): void
     {
         try {
             $hikes = (new Hike())->findAll();
 
             include 'views/layout/header.view.php';
-            include 'views/hike_list.view.php';
+            include 'views/hike_list_admin.view.php';
             include 'views/layout/footer.view.php';
 
         } catch (Exception $e) {
@@ -157,14 +157,7 @@ public function deleteHike(string $hikeId)
         return;
     }
 
-    // Remove associations first
-    try {
-        $this->db->query("UPDATE Users SET hike_id = NULL WHERE hike_id = ?", [$hikeId]);
-    } catch (PDOException $e) {
-        // Handle the error, log, or display a message
-        echo "Error removing associations: " . $e->getMessage();
-        return;
-    }
+   
 
     // Delete the hike
     try {

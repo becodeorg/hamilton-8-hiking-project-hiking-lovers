@@ -132,5 +132,19 @@ public function adminProfile()
     }
 }
 
+public function showAllUsersAdmin(): void
+    {
+        try {
+            $users = (new User())->findAll();
+
+            include 'views/layout/header.view.php';
+            include 'views/user_list_admin.view.php';
+            include 'views/layout/footer.view.php';
+
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
 
 }
