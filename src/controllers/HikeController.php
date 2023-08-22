@@ -224,9 +224,9 @@ public function showAddHikeForm()
         include 'views/layout/footer.view.php';
     }
 
-    public function addhike(string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput, int $user_idInput)
+    public function addhike(string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput, string $tagsInput, int $user_idInput)
     {
-        if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+        if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput) || empty($tagsInput)) {
             throw new Exception('Formulaire non complet');
         }
     
@@ -235,13 +235,14 @@ public function showAddHikeForm()
         $duration = htmlspecialchars($durationInput);
         $elevation_gain = htmlspecialchars($elevation_gainInput);
         $description = htmlspecialchars($descriptionInput);
+        $tags = htmlspecialchars($tagsInput);
 
         $this->db->query(
             "
-                INSERT INTO Hikes (name,distance,duration, elevation_gain, description,user_id) 
-                VALUES (?, ?, ?, ?, ?,?)
+                INSERT INTO Hikes (name,distance,duration, elevation_gain, description, tags, user_id) 
+                VALUES (?, ?, ?, ?, ?, ?, ?)
             ",
-            [$hikename, $distance, $duration, $elevation_gain, $description, $user_idInput]
+            [$hikename, $distance, $duration, $elevation_gain, $description, $tags, $user_idInput]
         );
 
         $_SESSION['hike'] = [
@@ -250,7 +251,8 @@ public function showAddHikeForm()
             'distance' => $distance,
             'duration' => $duration,
             'elevation_gain' => $elevation_gain,
-            'description' => $description
+            'description' => $description,
+            'tags' => $tags
 
         ];
 

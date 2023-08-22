@@ -71,7 +71,7 @@ try {
                 $hikeController = new HikeController();
                 if ($method === "GET") $hikeController->showAddHikeForm();
                 
-                if ($method === "POST") $hikeController->addHike($_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description'], $_SESSION['user']['id']);
+                if ($method === "POST") $hikeController->addHike($_POST['hikename'],$_POST['distance'],$_POST['duration'],$_POST['elevation_gain'], $_POST['description'], $_POST['tags'], $_SESSION['user']['id']);
                 break;
 
         case "editHike":
