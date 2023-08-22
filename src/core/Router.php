@@ -108,7 +108,7 @@ class Router
                 $hikeController = new HikeController();
                 if ($method === "GET") $hikeController->showAddHikeForm();
 
-                if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'], $_POST['hikename'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                if ($method === "POST") $hikeController->addHike($_SESSION['user']['id'], $_POST['hikename'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description'], $_POST['tags']);
                 break;
 
             case "editHike":
@@ -121,7 +121,7 @@ class Router
 
             case "updatehike":
                     $hikeController = new HikeController();
-                    if ($method === "POST") $hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                    if ($method === "POST") $hikeController->updatehike($_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description'], $_POST['tags']);
                     break;
             case "tags":
                     $tagsController = new TagsController();

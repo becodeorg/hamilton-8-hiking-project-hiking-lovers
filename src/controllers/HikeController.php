@@ -53,9 +53,9 @@ class HikeController
 
 
 
-    public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
+    public function addHike(int $user_id,string $hikenameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput, string $tagsInput)
     {
-        if (empty($hikenameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+        if (empty($hikenameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput || empty($tagsInput))) {
             throw new Exception('Formulaire non complet');
         }
 
@@ -64,6 +64,7 @@ class HikeController
         $duration = htmlspecialchars($durationInput);
         $elevation_gain =htmlspecialchars($elevation_gainInput);
         $description =htmlspecialchars($descriptionInput);
+        $tags =htmlspecialchars($tagsInput);
 
         $this->db->query(
             "
