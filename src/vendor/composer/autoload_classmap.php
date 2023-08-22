@@ -16,5 +16,7 @@ return array(
     'Controllers\\UserController' => $baseDir . '/controllers/UserController.php',
     'Models\\Database' => $baseDir . '/models/Database.php',
     'Models\\Hike' => $baseDir . '/models/Hike.php',
+    'Models\\Tags' => $baseDir . '/models/Tags.php',
+    'Models\\User' => $baseDir . '/models/User.php',
     'core\\Router' => $baseDir . '/core/Router.php',
 );
