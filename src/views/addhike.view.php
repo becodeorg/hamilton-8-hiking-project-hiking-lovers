@@ -25,14 +25,14 @@
 
     <label for="tags">Select a tag</label>
 
-<select name="tags" id="tags">
-  <option value="easy">Easy</option>
-  <option value="medium">Medium</option>
-  <option value="hard">Hard</option>
+        <select name="tags" id="tags">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+             <option value="hard">Hard</option>
   
-</select>
+        </select>
 
-</div>
+    </div>
 
     <button type="submit">Add Hike</button>
 

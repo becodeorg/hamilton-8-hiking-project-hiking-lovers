@@ -175,9 +175,10 @@ public function deleteHike(string $hikeId)
 
 
 
-public function updateHike(string $hikeId,string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput, string $descriptionInput)
+public function updateHike(string $hikeId,string $nameInput, string $distanceInput, string $durationInput, string $elevation_gainInput,  string $descriptionInput, string $tagsInput,
+)
 {
-    if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput)) {
+    if (empty($nameInput) ||empty($distanceInput) || empty($durationInput) || empty($elevation_gainInput) || empty($descriptionInput) || empty($tagsInput)) {
         throw new Exception('Formulaire non complet');
     }
 
@@ -186,6 +187,7 @@ public function updateHike(string $hikeId,string $nameInput, string $distanceInp
     $duration = htmlspecialchars($durationInput);
     $elevation_gain = htmlspecialchars($elevation_gainInput);
     $description = htmlspecialchars($descriptionInput);
+    $tags = htmlspecialchars($tagsInput);
 
     // Retrieve user information from session
     $user = $_SESSION['user'];
@@ -193,8 +195,8 @@ public function updateHike(string $hikeId,string $nameInput, string $distanceInp
 try{
     // Update user profile information in the database
     $this->db->query(
-        "UPDATE Hikes SET name = ?, distance = ?, duration = ?, elevation_gain = ?, description = ? WHERE id = ?",
-        [$hikename, $distance, $duration, $elevation_gain, $description, $hikeId]
+        "UPDATE Hikes SET name = ?, distance = ?, duration = ?, elevation_gain = ?, description = ?, tags = ? WHERE id = ?",
+        [$hikename, $distance, $duration, $elevation_gain, $description, $tags, $hikeId]
     );
 }catch (PDOException $e) {
     // Log the error or display a message
@@ -208,6 +210,7 @@ try{
     $_SESSION['hike']['duration'] = $durationInput;
     $_SESSION['hike']['elevation_gain'] = $elevation_gainInput;
     $_SESSION['hike']['description'] = $descriptionInput;
+    $_SESSION['hike']['tags'] = $tagsInput;
 
 
     var_dump("Update query executed");         // Debugging output

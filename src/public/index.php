@@ -86,7 +86,7 @@ try {
                 $hikeController = new HikeController();
                 if ($method === "POST") {
                     $hikeId = $_POST['hike_id'] ?? null; // Fetch hike_id from the POST data
-                    $hikeController->updateHike($hikeId,$_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description']);
+                    $hikeController->updateHike($hikeId,$_POST['name'], $_POST['distance'], $_POST['duration'], $_POST['elevation_gain'], $_POST['description'], $_POST['tags']);
                 }
                     break;
         case "deletehike":
