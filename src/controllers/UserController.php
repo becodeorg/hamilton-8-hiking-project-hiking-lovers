@@ -137,4 +137,35 @@ class UserController
         header('location: /?profile_updated=true');
     }
 
+
+public function adminProfile()
+{
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+
+        include 'views/layout/header.view.php';
+        include 'views/admin.view.php'; // Create this view file to display user information
+        include 'views/layout/footer.view.php';
+    } else {
+        // User is not logged in, redirect to login page or handle accordingly
+        http_response_code(302);
+        header('location: /'); // Redirect to the home page or login page
+    }
+}
+
+public function showAllUsersAdmin(): void
+    {
+        try {
+            $users = (new User())->findAll();
+
+            include 'views/layout/header.view.php';
+            include 'views/user_list_admin.view.php';
+            include 'views/layout/footer.view.php';
+
+        } catch (Exception $e) {
+            print_r($e->getMessage());
+        }
+    }
+
+
 }
