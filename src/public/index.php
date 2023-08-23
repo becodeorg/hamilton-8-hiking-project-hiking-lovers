@@ -63,6 +63,10 @@ try {
                 $userController = new UserController();
                 if ($method === "GET") $userController->editProfile();
                 break;
+        case "editprofileadmin":
+                $userController = new UserController();
+                if ($method === "GET") $userController->editProfileAdmin();
+                break;
         case "updateprofile":
                 $userController = new UserController();
                 if ($method === "POST")$userController->updateProfile($_POST['firstname'], $_POST['lastname'], $_POST['nickname'], $_POST['email'], $_POST['password']);

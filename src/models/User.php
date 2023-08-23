@@ -22,14 +22,24 @@ class User extends Database
         return $users;
     }
 
-    public function find(string $id): array|false
+    public function find(string $user_id): array
     {
         $stmt = $this->query(
             "SELECT * FROM Users WHERE id = ?",
-            [$id]
+            [$user_id]
         );
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    private function loadUserProfile(int $userId)
+{
+    $stmt = $this->db->query(
+        "SELECT id, firstname, lastname, nickname, email FROM Users WHERE id = ?",
+        [$userId]
+    );
+
+    return $stmt->fetch(); // Returns the user profile data as an associative array
+}
 
    
 

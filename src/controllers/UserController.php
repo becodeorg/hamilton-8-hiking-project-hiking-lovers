@@ -147,4 +147,83 @@ public function showAllUsersAdmin(): void
     }
 
 
+    public function editProfileAdmin()
+{
+    if (isset($_SESSION['user'])) {
+        if (isset($_GET['user_id'])) {
+            $user_id = $_GET['user_id'];
+
+            include 'models/User.php';
+
+            $user = new User(); 
+
+            
+            $user_data = $user->find($user_id);
+
+
+            if ($user_data !== false) {
+
+                $user->firstname = $user_data['firstname'];
+                $user->lastname = $user_data['lastname'];
+                $user->nickname = $user_data['nickname'];
+                $user->email = $user_data['email'];
+                
+                include 'views/layout/header.view.php';
+                include 'views/editProfileAdmin.view.php'; 
+                include 'views/layout/footer.view.php';
+            } else {
+                // Handle the case when the user is not found
+                http_response_code(404); // Not Found
+                echo "User not found";
+            }
+        } else {
+            
+            http_response_code(302);
+            header('location: /');
+        }
+    } else {
+        
+        http_response_code(302);
+        header('location: /'); 
+    }      
+}
+
+
+
+public function updateProfileAdmin(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput)
+{
+    if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput)) {
+        throw new Exception('Formulaire non complet');
+    }
+
+    $firstname = htmlspecialchars($firstnameInput);
+    $lastname = htmlspecialchars($lastnameInput);
+    $nickname = htmlspecialchars($nicknameInput);
+    $email = filter_var($emailInput, FILTER_SANITIZE_EMAIL);
+    
+
+    // Retrieve user information from session
+    $user = $_SESSION['user'];
+
+
+    // Update user profile information in the database
+    $this->db->query(
+        "UPDATE Users SET firstname = ?, lastname = ?, nickname = ?, email = ?, password = ? WHERE id = ?",
+        [$firstname, $lastname, $nickname, $email, $passwordHash, $user['id']]
+    );
+
+
+    // Update session data with new profile information
+    $_SESSION['user']['firstname'] = $firstnameInput;
+    $_SESSION['user']['lastname'] = $lastnameInput;
+    $_SESSION['user']['nickname'] = $nicknameInput;
+    $_SESSION['user']['email'] = $emailInput;
+
+    http_response_code(302);
+    header('location: /?profile_updated=true');
+}
+
+
+
+
 }

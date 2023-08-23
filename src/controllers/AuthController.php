@@ -15,7 +15,7 @@ class AuthController
         $this->db = new Database();
     }
 
-    public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput)
+    public function register(string $firstnameInput, string $lastnameInput, string $nicknameInput, string $emailInput, string $passwordInput, ?int $hikeId = null)
     {
         if (empty($firstnameInput) ||empty($lastnameInput) || empty($nicknameInput) || empty($emailInput) || empty($passwordInput)) {
             throw new Exception('Formulaire non complet');
@@ -29,10 +29,10 @@ class AuthController
 
         $this->db->query(
             "
-                INSERT INTO Users (firstname,lastname,nickname, email, password) 
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO Users (firstname,lastname,nickname, email, password, hike_id) 
+                VALUES (?, ?, ?, ?, ?, ?)
             ",
-            [$firstname, $lastname, $nickname, $email, $passwordHash]
+            [$firstname, $lastname, $nickname, $email, $passwordHash, $hikeId]
         );
 
         $_SESSION['user'] = [
@@ -77,6 +77,12 @@ class AuthController
             throw new Exception('Mauvais mot de passe');
         }
 
+        $redirectionUrl = '/user'; // Default to user profile
+
+    if ($user['role'] === 'admin') {
+        $redirectionUrl = '/admin'; // Redirect to admin page if the role is admin
+    }
+
         $_SESSION['user'] = [
             'id' => $user['id'],
             'firstname' => $user['firstname'],
@@ -90,7 +96,7 @@ class AuthController
 
         // Redirect to user profile
         http_response_code(302);
-        header('location: /user');
+    header('Location: ' . $redirectionUrl);
     }
 
     public function showLoginForm()

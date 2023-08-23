@@ -2,6 +2,7 @@
 
 
     <?php foreach ($users as $user): ?>
+        <?php if ($user['role'] !== 'admin'): ?>
     <div class="hike_container">
 
     
@@ -11,7 +12,7 @@
     <p>Email: <?= isset($user['email']) ? htmlspecialchars($user['email']) : '' ?></p>
 
     <div class="buttons">
-    <button><a href="/editprofile">Edit  profile</a></button>
+    <button><a href="/editprofileadmin?user_id=<?php echo $user['id']; ?>">Edit  profile</a></button>
 </div>
 
 <div class="buttons">
@@ -19,6 +20,7 @@
 </div>
 
     </div>
+    <?php endif ?>
     <?php endforeach; ?>
     
 
